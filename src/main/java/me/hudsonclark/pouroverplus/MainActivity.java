@@ -3,6 +3,7 @@ package me.hudsonclark.pouroverplus;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,6 +17,8 @@ public class MainActivity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null)
             setSupportActionBar(toolbar);
+        else
+            Log.v("test", "null");
 
 
         setContentView(R.layout.activity_main);

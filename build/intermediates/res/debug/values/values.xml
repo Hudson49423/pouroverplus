@@ -173,7 +173,7 @@
     <string name="hello_world">Hello world!</string>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/styles.xml -->
     <eat-comment/>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/PrimaryLightBlue</item>
 
