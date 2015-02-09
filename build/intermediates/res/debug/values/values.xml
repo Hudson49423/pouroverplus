@@ -175,7 +175,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <string name="lets_go_button">Let\'s Go!</string>
-    <string name="num_coffee">19g</string>
+    <string name="num_coffee">19</string>
     <string name="num_cups">1</string>
     <string name="title_activity_home">home</string>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/styles.xml -->
