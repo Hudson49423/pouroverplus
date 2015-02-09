@@ -1,0 +1,5 @@
+/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/classes/debug
+/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-4ff06ddaf973dcac5fbcca6708f692be27beedfa.jar
+/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-427a5e856c4e9979b130bb1419e47ef9540b6712.jar
+/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/pre-dexed/debug/classes-c0d1480b44e5c034a5d389dedf323dd0be6acd79.jar
+/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/pre-dexed/debug/classes-84b4e338319512e19c4bebd9cf5a6feeef03a286.jar
