@@ -1302,7 +1302,8 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020030;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
-        public static final int ic_launcher=0x7f020033;
+        public static final int ic_action_next_item=0x7f020033;
+        public static final int ic_launcher=0x7f020034;
     }
     public static final class id {
         public static final int action_bar=0x7f080031;
@@ -1318,12 +1319,14 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f08002e;
         public static final int action_mode_bar_stub=0x7f08002d;
         public static final int action_mode_close_button=0x7f080020;
-        public static final int action_settings=0x7f080040;
+        public static final int action_settings=0x7f080044;
         public static final int activity_chooser_view_content=0x7f080021;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
         public static final int checkbox=0x7f080029;
         public static final int collapseActionView=0x7f080017;
+        public static final int container=0x7f08003f;
+        public static final int cups_text_view=0x7f080041;
         public static final int decor_content_parent=0x7f08002f;
         public static final int default_activity_button=0x7f080024;
         public static final int dialog=0x7f08001b;
@@ -1333,11 +1336,13 @@ containing a value of this type.
         public static final int end=0x7f080014;
         public static final int expand_activities_button=0x7f080022;
         public static final int expanded_menu=0x7f080028;
+        public static final int grams_text_view=0x7f080042;
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f080026;
         public static final int ifRoom=0x7f080018;
         public static final int image=0x7f080023;
+        public static final int lin=0x7f080040;
         public static final int listMode=0x7f080009;
         public static final int list_item=0x7f080025;
         public static final int middle=0x7f080015;
@@ -1365,7 +1370,7 @@ containing a value of this type.
         public static final int submit_area=0x7f08003c;
         public static final int tabMode=0x7f08000b;
         public static final int title=0x7f080027;
-        public static final int toolbar=0x7f08003f;
+        public static final int toolbar=0x7f080043;
         public static final int up=0x7f080008;
         public static final int useLogo=0x7f080012;
         public static final int withText=0x7f08001a;
@@ -1398,12 +1403,14 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030014;
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
-        public static final int activity_main=0x7f030017;
-        public static final int support_simple_spinner_dropdown_item=0x7f030018;
-        public static final int toolbar=0x7f030019;
+        public static final int activity_home=0x7f030017;
+        public static final int fragment_home=0x7f030018;
+        public static final int input=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int toolbar=0x7f03001b;
     }
     public static final class menu {
-        public static final int menu_main=0x7f0c0000;
+        public static final int menu_home=0x7f0c0000;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0a0000;
@@ -1424,7 +1431,9 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a000f;
         public static final int action_settings=0x7f0a0010;
         public static final int app_name=0x7f0a0011;
-        public static final int hello_world=0x7f0a0012;
+        public static final int hello_blank_fragment=0x7f0a0012;
+        public static final int hello_world=0x7f0a0013;
+        public static final int title_activity_home=0x7f0a0014;
     }
     public static final class style {
         public static final int AppTheme=0x7f0b0000;

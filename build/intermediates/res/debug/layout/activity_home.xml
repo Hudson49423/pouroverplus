@@ -1,0 +1,11 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="me.hudsonclark.pouroverplus.home" tools:ignore="MergeRootFrame">
+
+    <fragment
+        android:name="me.hudsonclark.pouroverplus.InputFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/activity_home.xml -->

@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="me.hudsonclark.pouroverplus.Home">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/menu/menu_main.xml -->
+<!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/menu/menu_home.xml -->
