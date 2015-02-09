@@ -1,71 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/PrimaryLightBlue"
     android:layout_alignParentBottom="true">
 
 
-    <LinearLayout android:id="@+id/lin"
+    <LinearLayout
+        android:id="@+id/lin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="2">
 
         <RelativeLayout
+            android:id="@+id/rel"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-            <TextView android:id="@+id/cups_text_view"
+
+            <TextView
+                android:id="@+id/cups_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cups"
+                android:text="@string/cups_title"
                 android:textSize="25sp"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10sp"/>
-            <EditText
+                android:layout_margin="10sp" />
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cups_text_view"
-                android:layout_centerHorizontal="true"
-                android:hint="Enter cups here" />
+                android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:gravity="center"
+                    android:padding="5sp">
+
+                    <Button android:id="@+id/cups_up"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_action_collapse"
+                        android:layout_weight="1" />
+
+                    <TextView android:id="@+id/cups"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:text="@string/num_cups"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+                    <Button android:id="@+id/cups_down"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_action_expand"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
             </RelativeLayout>
+        </RelativeLayout>
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:src="@drawable/ic_action_next_item"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
-            </RelativeLayout>
+        <!--        <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_action_next_item" />
+                </RelativeLayout>-->
 
 
         <RelativeLayout
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="5sp">
 
-            <TextView android:id="@+id/grams_text_view"
+            <TextView
+                android:id="@+id/grams_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coffee"
+                android:text="@string/coffee_title"
                 android:textSize="25sp"
                 android:layout_margin="10sp"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true" />
 
-            <EditText
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/grams_text_view"
-                android:layout_centerHorizontal="true"
-                android:hint="Enter Coffee here"/>
+                android:layout_centerHorizontal="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:gravity="center"
+                    android:padding="5sp">
+
+                    <Button android:id="@+id/coffee_up"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_action_collapse"
+                        android:layout_weight="1" />
+
+                    <TextView android:id="@+id/coffee"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:text="@string/num_coffee"
+                        android:textSize="25sp"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+                    <Button android:id="@+id/coffee_down"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_action_expand"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
             </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
     <Button
         android:paddingLeft="10sp"
@@ -74,11 +138,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
-        android:text="Let's Go!"
+        android:text="@string/lets_go_button"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/lin"
-        android:background="@color/PrimaryDarkBlue"/>
+        android:background="@color/PrimaryDarkBlue" />
 
 
 </RelativeLayout><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/input.xml -->
