@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/PrimaryLightBlue"
+    android:layout_alignParentBottom="true">
+
+    <LinearLayout android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView android:id="@+id/cups_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cups"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10sp"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cups_text_view"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter cups here" />
+            </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ic_action_next_item"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                />
+            </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView android:id="@+id/grams_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coffee"
+                android:textSize="20sp"
+                android:layout_margin="10sp"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/grams_text_view"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Coffee here"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    <Button
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:layout_margin="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="Let's Go!"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/lin"
+        android:background="@color/PrimaryDarkBlue"/>
+
+
+</RelativeLayout>
