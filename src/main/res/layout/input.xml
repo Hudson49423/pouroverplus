@@ -41,13 +41,15 @@
                     android:gravity="center"
                     android:padding="5sp">
 
-                    <Button android:id="@+id/cups_up"
+                    <Button
+                        android:id="@+id/cups_up"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_action_collapse"
                         android:layout_weight="1" />
 
-                    <TextView android:id="@+id/cups"
+                    <TextView
+                        android:id="@+id/cups"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
                         android:text="@string/num_cups"
@@ -55,7 +57,8 @@
                         android:layout_weight="1"
                         android:gravity="center" />
 
-                    <Button android:id="@+id/cups_down"
+                    <Button
+                        android:id="@+id/cups_down"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_action_expand"
@@ -64,19 +67,6 @@
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
-
-
-        <!--        <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_action_next_item" />
-                </RelativeLayout>-->
-
 
         <RelativeLayout
             android:layout_width="0px"
@@ -102,29 +92,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:gravity="center"
-                    android:padding="5sp">
+                    android:weightSum="2"
+                    android:padding="5sp"
+                    android:layout_centerHorizontal="true">
 
-                    <Button android:id="@+id/coffee_up"
+                    <RelativeLayout
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_action_collapse"
-                        android:layout_weight="1" />
-
-                    <TextView android:id="@+id/coffee"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:text="@string/num_coffee"
-                        android:textSize="25sp"
                         android:layout_weight="1"
-                        android:gravity="center" />
+                        android:gravity="center">
 
-                    <Button android:id="@+id/coffee_down"
+                        <TextView android:id="@+id/coffee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="25sp"
+                            android:text="19g"
+                            android:gravity="center" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_action_expand"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView android:id="@+id/coffee_tbsp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="25sp"
+                            android:text="2tbsp"
+                            android:gravity="center"/>
+                    </RelativeLayout>
+
 
                 </LinearLayout>
             </RelativeLayout>

@@ -12,13 +12,18 @@ import android.widget.TextView;
 public class InputFragment extends Fragment implements View.OnClickListener {
 
     private double numCups;
-    private int numCoffee;
+    private int coffeeGrams;
+    private double coffeeTablespoons;
+
     private Button cupsUp;
     private Button cupsDown;
-    private Button coffeeDown;
-    private Button coffeeUp;
+
     private TextView cupsText;
-    private TextView coffeeText;
+    private TextView coffeeGramsText;
+    private TextView coffeeTablespoonsText;
+
+    private int gramsRatio;
+    private int tablespoonRatio;
 
     public InputFragment() {
 
@@ -47,47 +52,53 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
 
     private void setUp(View view) {
-        try {
-            numCups = Double.parseDouble(((TextView) view.findViewById(R.id.cups)).getText().toString());
-            numCoffee = Integer.parseInt(((TextView) view.findViewById(R.id.coffee)).getText().toString());
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
         cupsUp = (Button) view.findViewById(R.id.cups_up);
         cupsDown = (Button) view.findViewById(R.id.cups_down);
-        coffeeUp = (Button) view.findViewById(R.id.coffee_up);
-        coffeeDown = (Button) view.findViewById(R.id.coffee_down);
+
 
         cupsUp.setOnClickListener(this);
         cupsDown.setOnClickListener(this);
-        coffeeDown.setOnClickListener(this);
-        coffeeUp.setOnClickListener(this);
 
         cupsText = (TextView) view.findViewById(R.id.cups);
-        coffeeText = (TextView) view.findViewById(R.id.coffee);
+        coffeeGramsText = (TextView) view.findViewById(R.id.coffee);
+        coffeeTablespoonsText = (TextView) view.findViewById(R.id.coffee_tbsp);
 
         numCups = 1;
-        numCoffee = 19;
+        coffeeGrams = 19;
+        coffeeTablespoons = 2;
 
         cupsText.setText("" + numCups);
-        coffeeText.setText("" + numCoffee);
+        coffeeGramsText.setText("" + coffeeGrams  + "g");
+        coffeeTablespoonsText.setText(("" + coffeeTablespoons + "tbsp"));
 
+
+        gramsRatio = 16;
+        tablespoonRatio = 2;
     }
 
     @Override
     public void onClick(View v) {
         if (v == cupsUp) {
             numCups += 0.5;
-            numCoffee = (int) Math.round(numCups * 300 / 16);
-            coffeeText.setText("" + numCoffee);
-            cupsText.setText("" + numCups);
+            update();
         }
         else if (v == cupsDown && numCups > 0) {
             numCups -= 0.5;
-            numCoffee = (int) Math.round(numCups * 300 / 16);
-            coffeeText.setText("" + numCoffee);
-            cupsText.setText("" + numCups);
+            update();
         }
+    }
+
+    private void update() {
+        // Calculate grams.
+        coffeeGrams = (int) Math.round(numCups * 300 / gramsRatio);
+
+        // Calculate tablespoons.
+        coffeeTablespoons = numCups * tablespoonRatio;
+
+        // Update the text.
+        coffeeGramsText.setText("" + coffeeGrams  + "g");
+        coffeeTablespoonsText.setText("" + coffeeTablespoons + "tbsp");
+        cupsText.setText("" + numCups);
     }
 
 }

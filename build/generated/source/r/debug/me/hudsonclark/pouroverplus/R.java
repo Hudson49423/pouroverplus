@@ -1321,14 +1321,13 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f08002e;
         public static final int action_mode_bar_stub=0x7f08002d;
         public static final int action_mode_close_button=0x7f080020;
-        public static final int action_settings=0x7f08004b;
+        public static final int action_settings=0x7f08004a;
         public static final int activity_chooser_view_content=0x7f080021;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
         public static final int checkbox=0x7f080029;
-        public static final int coffee=0x7f080048;
-        public static final int coffee_down=0x7f080049;
-        public static final int coffee_up=0x7f080047;
+        public static final int coffee=0x7f080047;
+        public static final int coffee_tbsp=0x7f080048;
         public static final int collapseActionView=0x7f080017;
         public static final int container=0x7f08003f;
         public static final int cups=0x7f080044;
@@ -1379,7 +1378,7 @@ containing a value of this type.
         public static final int submit_area=0x7f08003c;
         public static final int tabMode=0x7f08000b;
         public static final int title=0x7f080027;
-        public static final int toolbar=0x7f08004a;
+        public static final int toolbar=0x7f080049;
         public static final int up=0x7f080008;
         public static final int useLogo=0x7f080012;
         public static final int withText=0x7f08001a;

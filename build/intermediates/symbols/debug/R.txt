@@ -353,14 +353,13 @@ int id action_menu_presenter 0x7f080003
 int id action_mode_bar 0x7f08002e
 int id action_mode_bar_stub 0x7f08002d
 int id action_mode_close_button 0x7f080020
-int id action_settings 0x7f08004b
+int id action_settings 0x7f08004a
 int id activity_chooser_view_content 0x7f080021
 int id always 0x7f080016
 int id beginning 0x7f080013
 int id checkbox 0x7f080029
-int id coffee 0x7f080048
-int id coffee_down 0x7f080049
-int id coffee_up 0x7f080047
+int id coffee 0x7f080047
+int id coffee_tbsp 0x7f080048
 int id collapseActionView 0x7f080017
 int id container 0x7f08003f
 int id cups 0x7f080044
@@ -411,7 +410,7 @@ int id split_action_bar 0x7f080007
 int id submit_area 0x7f08003c
 int id tabMode 0x7f08000b
 int id title 0x7f080027
-int id toolbar 0x7f08004a
+int id toolbar 0x7f080049
 int id up 0x7f080008
 int id useLogo 0x7f080012
 int id withText 0x7f08001a
