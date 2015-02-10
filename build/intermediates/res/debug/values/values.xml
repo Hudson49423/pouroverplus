@@ -150,6 +150,12 @@
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
     <integer name="abc_max_action_buttons">2</integer>
+    <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <integer name="nineteen">19</integer>
+    <integer name="two">2</integer>
+    <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -178,6 +184,10 @@
     <string name="lets_go_button">Let\'s Go!</string>
     <string name="num_coffee">19</string>
     <string name="num_cups">1</string>
+    <string name="pref_grams_key">grams</string>
+    <string name="pref_grams_title">Grams of coffee per cup</string>
+    <string name="pref_tablespoons_key">tablespoons</string>
+    <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="title_activity_home">home</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/styles.xml -->

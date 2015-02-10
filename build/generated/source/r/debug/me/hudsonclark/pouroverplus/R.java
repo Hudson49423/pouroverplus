@@ -1389,6 +1389,8 @@ containing a value of this type.
     }
     public static final class integer {
         public static final int abc_max_action_buttons=0x7f0a0000;
+        public static final int nineteen=0x7f0a0001;
+        public static final int two=0x7f0a0002;
     }
     public static final class layout {
         public static final int abc_action_bar_title_item=0x7f030000;
@@ -1417,8 +1419,9 @@ containing a value of this type.
         public static final int activity_home=0x7f030017;
         public static final int fragment_home=0x7f030018;
         public static final int input=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
-        public static final int toolbar=0x7f03001b;
+        public static final int settings_toolbar=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int toolbar=0x7f03001c;
     }
     public static final class menu {
         public static final int home_menu=0x7f0d0000;
@@ -1451,8 +1454,12 @@ containing a value of this type.
         public static final int lets_go_button=0x7f0b0017;
         public static final int num_coffee=0x7f0b0018;
         public static final int num_cups=0x7f0b0019;
-        public static final int title_activity_home=0x7f0b001a;
-        public static final int title_activity_settings=0x7f0b001b;
+        public static final int pref_grams_key=0x7f0b001a;
+        public static final int pref_grams_title=0x7f0b001b;
+        public static final int pref_tablespoons_key=0x7f0b001c;
+        public static final int pref_tablespoons_title=0x7f0b001d;
+        public static final int title_activity_home=0x7f0b001e;
+        public static final int title_activity_settings=0x7f0b001f;
     }
     public static final class style {
         public static final int AppTheme=0x7f0c0000;

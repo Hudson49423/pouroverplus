@@ -13,5 +13,13 @@
     <string name="num_coffee">19</string>
     <string name="lets_go_button">Let\'s Go!</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    
+    <!-- For general preferences -->
+    <string name="pref_grams_key">grams</string>
+    <string name="pref_tablespoons_key">tablespoons</string>
+    <string name="pref_grams_title">Grams of coffee per cup</string>
+    <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
 
+    <integer name="nineteen">19</integer>
+    <integer name="two">2</integer>
 </resources>

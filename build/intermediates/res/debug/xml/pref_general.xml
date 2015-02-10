@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <EditTextPreference
+        android:key="@string/pref_grams_key"
+        android:title="@string/pref_grams_title"
+        android:defaultValue="@integer/nineteen"
+        android:inputType="number" />
+
+    <EditTextPreference
+        android:key="@string/pref_tablespoons_key"
+        android:title="@string/pref_tablespoons_title"
+        android:defaultValue="@integer/two"
+        android:inputType="number" />
+
 </PreferenceScreen><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/xml/pref_general.xml -->
