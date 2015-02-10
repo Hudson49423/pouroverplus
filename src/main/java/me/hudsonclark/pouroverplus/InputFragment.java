@@ -1,8 +1,9 @@
 package me.hudsonclark.pouroverplus;
 
 import android.app.Fragment;
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     private int gramsRatio;
     private int tablespoonRatio;
+    private int mlInCup;
 
     public InputFragment() {
 
@@ -55,6 +57,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         cupsUp = (Button) view.findViewById(R.id.cups_up);
         cupsDown = (Button) view.findViewById(R.id.cups_down);
 
+        setRatios();
 
         cupsUp.setOnClickListener(this);
         cupsDown.setOnClickListener(this);
@@ -64,20 +67,20 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         coffeeTablespoonsText = (TextView) view.findViewById(R.id.coffee_tbsp);
 
         numCups = 1;
-        coffeeGrams = 19;
-        coffeeTablespoons = 2;
+        update();
 
         cupsText.setText("" + numCups);
         coffeeGramsText.setText("" + coffeeGrams  + "g");
         coffeeTablespoonsText.setText(("" + coffeeTablespoons + "tbsp"));
 
 
-        gramsRatio = 16;
-        tablespoonRatio = 2;
+
     }
 
     @Override
     public void onClick(View v) {
+        setRatios();
+
         if (v == cupsUp) {
             numCups += 0.5;
             update();
@@ -90,7 +93,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     private void update() {
         // Calculate grams.
-        coffeeGrams = (int) Math.round(numCups * 300 / gramsRatio);
+        coffeeGrams = (int) Math.round(numCups * gramsRatio);
 
         // Calculate tablespoons.
         coffeeTablespoons = numCups * tablespoonRatio;
@@ -101,4 +104,21 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         cupsText.setText("" + numCups);
     }
 
+    private void setRatios() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        try {
+            gramsRatio = Integer.parseInt(prefs.getString("grams", "19"));
+            tablespoonRatio = Integer.parseInt(prefs.getString("tablespoons", "2"));
+            mlInCup = Integer.parseInt(prefs.getString("water", "300"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();;
+        setRatios();
+        update();
+    }
 }

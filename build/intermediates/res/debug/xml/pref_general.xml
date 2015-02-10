@@ -5,12 +5,21 @@
         android:key="@string/pref_grams_key"
         android:title="@string/pref_grams_title"
         android:defaultValue="@integer/nineteen"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="@color/primary_text_default_material_light"/>
 
     <EditTextPreference
         android:key="@string/pref_tablespoons_key"
         android:title="@string/pref_tablespoons_title"
         android:defaultValue="@integer/two"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="@color/primary_text_default_material_light"/>
+
+    <EditTextPreference
+        android:key="@string/pref_water_key"
+        android:title="@string/pref_water_title"
+        android:defaultValue="@integer/three_hundred"
+        android:inputType="number"
+        android:textColor="@color/primary_text_default_material_light"/>
 
 </PreferenceScreen><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/xml/pref_general.xml -->
