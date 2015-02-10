@@ -1,6 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="me.hudsonclark.pouroverplus.Home">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_settings"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/action_help"
+        android:title="@string/action_help"
+        android:icon="@drawable/ic_action_help"
+        app:showAsAction="ifRoom" />
 </menu>

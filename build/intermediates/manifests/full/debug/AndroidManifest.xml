@@ -23,6 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="me.hudsonclark.pouroverplus.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="me.hudsonclark.pouroverplus.Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.hudsonclark.pouroverplus.Home" />
+        </activity>
     </application>
 
 </manifest>

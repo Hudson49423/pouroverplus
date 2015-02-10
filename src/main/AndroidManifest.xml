@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.hudsonclark.pouroverplus"
-    android:windowSoftInputMode="adjustResize">
+    android:windowSoftInputMode="adjustResize" >
 
     <application
         android:allowBackup="true"
@@ -16,6 +16,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.hudsonclark.pouroverplus.Home" />
         </activity>
     </application>
 
