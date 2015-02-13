@@ -18,6 +18,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     private Button cupsUp;
     private Button cupsDown;
+    private Button start;
 
     private TextView cupsText;
     private TextView coffeeGramsText;
@@ -56,6 +57,14 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     private void setUp(View view) {
         cupsUp = (Button) view.findViewById(R.id.cups_up);
         cupsDown = (Button) view.findViewById(R.id.cups_down);
+        start = (Button) view.findViewById(R.id.button_start);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start();
+            }
+        });
 
         setRatios();
 
@@ -120,5 +129,10 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         super.onResume();;
         setRatios();
         update();
+    }
+
+    // Called when "let's go" button is clicked.
+    private void start() {
+
     }
 }

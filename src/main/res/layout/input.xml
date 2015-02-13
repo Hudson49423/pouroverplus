@@ -131,7 +131,7 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <Button
+    <Button android:id="@+id/button_start"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         android:layout_margin="20sp"

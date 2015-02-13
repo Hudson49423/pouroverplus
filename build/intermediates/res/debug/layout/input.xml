@@ -1,148 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
-    android:background="@color/PrimaryLightBlue"
-    android:layout_alignParentBottom="true">
+    android:layout_width="match_parent"
+    android:foreground="?android:windowContentOverlay">
 
-
-    <LinearLayout
-        android:id="@+id/lin"
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
+        android:background="@color/PrimaryLightBlue"
+        android:layout_alignParentBottom="true">
 
-        <RelativeLayout
-            android:id="@+id/rel"
-            android:layout_width="0px"
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/cups_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cups_title"
-                android:textSize="25sp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10sp" />
+            android:weightSum="2">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/rel"
+                android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cups_text_view"
-                android:layout_centerHorizontal="true">
+                android:layout_weight="1">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/cups_text_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:gravity="center"
-                    android:padding="5sp">
+                    android:text="@string/cups_title"
+                    android:textSize="25sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10sp" />
 
-                    <Button
-                        android:id="@+id/cups_up"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_action_collapse"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/cups"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:text="@string/num_cups"
-                        android:textSize="25sp"
-                        android:layout_weight="1"
-                        android:gravity="center" />
-
-                    <Button
-                        android:id="@+id/cups_down"
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_action_expand"
-                        android:layout_weight="1" />
-
-                </LinearLayout>
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:padding="5sp">
-
-            <TextView
-                android:id="@+id/grams_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/coffee_title"
-                android:textSize="25sp"
-                android:layout_margin="10sp"
-                android:layout_centerHorizontal="true" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/grams_text_view"
-                android:layout_centerHorizontal="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:padding="5sp"
+                    android:layout_below="@id/cups_text_view"
                     android:layout_centerHorizontal="true">
 
-                    <RelativeLayout
-                        android:layout_width="0px"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center">
+                        android:weightSum="3"
+                        android:gravity="center"
+                        android:padding="5sp">
 
-                        <TextView android:id="@+id/coffee"
-                            android:layout_width="match_parent"
+                        <Button
+                            android:id="@+id/cups_up"
+                            android:layout_width="0px"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/ic_action_collapse"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/cups"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:text="@string/num_cups"
                             android:textSize="25sp"
-                            android:text="19g"
+                            android:layout_weight="1"
                             android:gravity="center" />
-                    </RelativeLayout>
 
-
-                    <RelativeLayout
-                        android:layout_width="0px"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center">
-
-                        <TextView android:id="@+id/coffee_tbsp"
-                            android:layout_width="match_parent"
+                        <Button
+                            android:id="@+id/cups_down"
+                            android:layout_width="0px"
                             android:layout_height="wrap_content"
-                            android:textSize="25sp"
-                            android:text="2tbsp"
-                            android:gravity="center"/>
-                    </RelativeLayout>
+                            android:background="@drawable/ic_action_expand"
+                            android:layout_weight="1" />
 
-
-                </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
 
-    <Button
-        android:paddingLeft="10sp"
-        android:paddingRight="10sp"
-        android:layout_margin="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:text="@string/lets_go_button"
-        android:textColor="#ffffff"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/lin"
-        android:background="@color/PrimaryDarkBlue" />
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="5sp">
+
+                <TextView
+                    android:id="@+id/grams_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/coffee_title"
+                    android:textSize="25sp"
+                    android:layout_margin="10sp"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/grams_text_view"
+                    android:layout_centerHorizontal="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:padding="5sp"
+                        android:layout_centerHorizontal="true">
+
+                        <RelativeLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/coffee"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="25sp"
+                                android:text="19g"
+                                android:gravity="center" />
+                        </RelativeLayout>
 
 
-</RelativeLayout><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/input.xml -->
+                        <RelativeLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/coffee_tbsp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="25sp"
+                                android:text="2tbsp"
+                                android:gravity="center" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_start"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:layout_margin="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/lets_go_button"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lin"
+            android:background="@color/PrimaryDarkBlue" />
+    </RelativeLayout>
+</FrameLayout>
+<!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/input.xml -->
