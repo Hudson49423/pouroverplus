@@ -79,7 +79,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         update();
 
         cupsText.setText("" + numCups);
-        coffeeGramsText.setText("" + coffeeGrams  + "g");
+        coffeeGramsText.setText("" + coffeeGrams + "g");
         coffeeTablespoonsText.setText(("" + coffeeTablespoons + "tbsp"));
 
     }
@@ -91,8 +91,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         if (v == cupsUp) {
             numCups += 0.5;
             update();
-        }
-        else if (v == cupsDown && numCups > 0) {
+        } else if (v == cupsDown && numCups > 0) {
             numCups -= 0.5;
             update();
         }
@@ -106,7 +105,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         coffeeTablespoons = numCups * tablespoonRatio;
 
         // Update the text.
-        coffeeGramsText.setText("" + coffeeGrams  + "g");
+        coffeeGramsText.setText("" + coffeeGrams + "g");
         coffeeTablespoonsText.setText("" + coffeeTablespoons + "tbsp");
         cupsText.setText("" + numCups);
     }
@@ -124,15 +123,15 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onResume() {
-        super.onResume();;
+        super.onResume();
         setRatios();
         update();
     }
 
     // Called when "let's go" button is clicked.
     private void start() {
-        //TimerFragment tf = (TimerFragment) getFragmentManager().findFragmentById(R.id.timer);
-        //tf.incrementDuration();
+        TimerFragment tf = (TimerFragment) getFragmentManager().findFragmentById(R.id.timer_frag);
+        tf.startTimer(numCups, coffeeGrams);
     }
 
 }
