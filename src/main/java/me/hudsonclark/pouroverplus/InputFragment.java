@@ -82,8 +82,6 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         coffeeGramsText.setText("" + coffeeGrams  + "g");
         coffeeTablespoonsText.setText(("" + coffeeTablespoons + "tbsp"));
 
-
-
     }
 
     @Override
@@ -133,6 +131,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     // Called when "let's go" button is clicked.
     private void start() {
-
+        //TimerFragment tf = (TimerFragment) getFragmentManager().findFragmentById(R.id.timer);
+        //tf.incrementDuration();
     }
+
 }

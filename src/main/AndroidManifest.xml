@@ -25,10 +25,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.hudsonclark.pouroverplus.Home" />
         </activity>
-        <activity
-            android:name=".test"
-            android:label="@string/title_activity_test" >
-        </activity>
     </application>
 
 </manifest>
