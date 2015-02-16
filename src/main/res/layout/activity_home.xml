@@ -3,9 +3,14 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="me.hudsonclark.pouroverplus.home" tools:ignore="MergeRootFrame">
 
-    <fragment
+    <fragment android:id="@+id/frag"
         android:name="me.hudsonclark.pouroverplus.InputFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
+
+    <me.hudsonclark.pouroverplus.TimerView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_above="@id/frag"/>
 </RelativeLayout>

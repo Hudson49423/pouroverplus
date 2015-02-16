@@ -193,6 +193,7 @@
     <string name="pref_water_title">mL of water per cup</string>
     <string name="title_activity_home">home</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_test">test</string>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
