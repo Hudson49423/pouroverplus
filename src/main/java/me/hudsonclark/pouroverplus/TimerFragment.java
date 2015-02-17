@@ -16,16 +16,19 @@ public class TimerFragment extends Fragment {
 
     private Handler mHandler;
     private Runnable runnable;
+    public static boolean stop;
 
     public void startTimer(double cups, int grams) {
         // Here we actually start the animation.
         // Eventually user will specify time etc.
         tv.animate(cups, grams);
+        stop = false;
     }
 
     private TimerView tv;
 
     public TimerFragment() {
+        stop = false;
     }
 
     @Override
@@ -38,14 +41,13 @@ public class TimerFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mHandler.removeCallbacks(runnable);
+        stop = true;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.v("From Fragment", "Runnable ended.");
-
+        stop = true;
     }
 
 
@@ -75,9 +77,6 @@ public class TimerFragment extends Fragment {
             float centerY = canvas.getHeight() / 2;
             float centerX = canvas.getWidth() / 2;
 
-            //canvas.drawRect(centerX - duration, centerY - duration, centerX + duration, centerY + duration, paint1);
-
-
             if (text != null && text2 != null) {
                 canvas.drawText(text, (float) (canvas.getWidth() * .10), (float) (canvas.getHeight() * .10), textPaint);
                 canvas.drawText(text2, (float) (canvas.getWidth() * .12), (float) (canvas.getHeight() * .20), textPaint);
@@ -104,10 +103,16 @@ public class TimerFragment extends Fragment {
             runnable = new Runnable() {
                 @Override
                 public void run() {
-                    // Do the work.
 
                     Log.v("From TimerView", "Runnable going.");
 
+                    // See if we should stop the animation.
+                    if (stop)
+                        return;
+
+                    // Set the starttime if we need to.
+                    // Maybe move this outside of the main running loop since
+                    // it only ever needs to be executed once.
                     if (startTime == 0)
                         startTime = System.currentTimeMillis();
 
@@ -122,16 +127,21 @@ public class TimerFragment extends Fragment {
                         text2 = null;
                     }
 
+                    // Stop the animation after 11 seconds.
                     if (currentTime > 11000) {
                         Log.v("From TimerView", "Runnable ended.");
                         return;
 
                     }
 
+                    // Wait one second before updating the view.
                     mHandler.postDelayed(this, 1000);
+
+                    // Invalidate the old view in order to draw the new one.
                     TimerView.this.invalidate();
                 }
             };
+
             runnable.run();
 
         }

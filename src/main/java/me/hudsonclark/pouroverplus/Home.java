@@ -2,6 +2,7 @@ package me.hudsonclark.pouroverplus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -45,5 +46,11 @@ public class Home extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+        TimerFragment.stop = true;
     }
 }
