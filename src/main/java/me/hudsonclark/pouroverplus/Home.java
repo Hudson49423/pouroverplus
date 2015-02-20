@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import me.hudsonclark.pouroverplus.view.TimerView;
+
 
 public class Home extends ActionBarActivity {
 
@@ -50,6 +52,6 @@ public class Home extends ActionBarActivity {
     @Override
     public void onPause() {
         super.onPause();
-        TimerFragment.stop = true;
+        TimerView.stop = true;
     }
 }
