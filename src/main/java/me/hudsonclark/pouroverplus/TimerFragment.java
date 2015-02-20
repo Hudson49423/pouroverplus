@@ -1,13 +1,7 @@
 package me.hudsonclark.pouroverplus;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +30,14 @@ public class TimerFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        tv.stop();
+        TimerView.stop = true;
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        tv.stop();
+        TimerView.stop = true;
+
     }
 }

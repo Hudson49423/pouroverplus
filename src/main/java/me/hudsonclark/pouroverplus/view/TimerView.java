@@ -19,8 +19,8 @@ public class TimerView extends View {
     private Runnable runnable;
 
     private int duration;
-    private Paint textPaint;
-    private Paint paint2;
+    private Paint fillPaint;
+    private Paint strokePaint;
 
     private long startTime;
     private int bloomTime;
@@ -29,6 +29,9 @@ public class TimerView extends View {
 
     private String text;
     private String text2;
+
+    // For making a sample progress bar
+    private float progress;
 
     public TimerView(Context context) {
         super(context);
@@ -40,27 +43,37 @@ public class TimerView extends View {
         float centerY = canvas.getHeight() / 2;
         float centerX = canvas.getWidth() / 2;
 
-        if (text != null && text2 != null) {
-            canvas.drawText(text, (float) (canvas.getWidth() * .10), (float) (canvas.getHeight() * .10), textPaint);
-            canvas.drawText(text2, (float) (canvas.getWidth() * .12), (float) (canvas.getHeight() * .20), textPaint);
+//        if (text != null && text2 != null) {
+//            canvas.drawText(text, (float) (canvas.getWidth() * .10), (float) (canvas.getHeight() * .10), textPaint);
+//            canvas.drawText(text2, (float) (canvas.getWidth() * .12), (float) (canvas.getHeight() * .20), textPaint);
+//
+//        }
 
-        }
+        // As a test lets make a simple progress bar
+        canvas.drawRect( centerX - 20, centerY + 200 - (progress / 50), centerX + 20, centerY + 200, fillPaint);
+        canvas.drawRect( centerX - 20, centerY + 200 - (20000 / 50), centerX + 20, centerY + 200, strokePaint);
     }
 
     private void init() {
         super.setWillNotDraw(false);
         duration = 100;
 
-        textPaint = new Paint();
-        textPaint.setStyle(Paint.Style.STROKE);
-        textPaint.setAntiAlias(true);
-        textPaint.setColor(Color.BLUE);
-        textPaint.setTextSize(60f);
+        fillPaint = new Paint();
+        fillPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        fillPaint.setAntiAlias(true);
+        fillPaint.setColor(Color.BLUE);
+
+        strokePaint = new Paint();
+        strokePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setAntiAlias(true);
+        strokePaint.setColor(Color.BLUE);
+        this.invalidate();
         this.invalidate();
     }
 
     public void animate(double cups, int grams) {
         startTime = 0;
+        progress = 1;
 
         mHandler = new Handler();
         runnable = new Runnable() {
@@ -90,15 +103,20 @@ public class TimerView extends View {
                     text2 = null;
                 }
 
+                // Make a simple progress bar.
+                if (currentTime < 20000) {
+                    progress =  currentTime;
+                }
+
                 // Stop the animation after 11 seconds.
-                if (currentTime > 11000) {
+                if (currentTime > 20000) {
                     Log.v("From TimerView", "Runnable ended.");
                     return;
 
                 }
 
                 // Wait one second before updating the view.
-                mHandler.postDelayed(this, 1000);
+                mHandler.postDelayed(this, 100);
 
                 // Invalidate the old view in order to draw the new one.
                 TimerView.this.invalidate();
@@ -113,6 +131,5 @@ public class TimerView extends View {
      */
     public void stop() {
         stop = true;
-        mHandler.removeCallbacks(runnable);
     }
 }
