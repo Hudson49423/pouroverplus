@@ -16,7 +16,6 @@ public class TimerFragment extends Fragment {
         tv.animate(cups, grams);
     }
 
-
     public TimerFragment() {
     }
 

@@ -13,25 +13,32 @@ import android.view.View;
  */
 public class TimerView extends View {
 
+    // Whether the animation is able to run.
     public static boolean stop;
 
     private Handler mHandler;
     private Runnable runnable;
 
-    private int duration;
+    // Various paint.
     private Paint fillPaint;
     private Paint strokePaint;
+    private Paint textPaint;
 
+    private final int bloomTime = 30;
+
+    // The percent done with the animation.
+    private float progress;
+
+    // For the actual timer.
     private long startTime;
-    private int bloomTime;
-    private long endTime;
     private long currentTime;
 
-    private String text;
-    private String text2;
+    // The total brew time.
+    private int duration;
 
-    // For making a sample progress bar
-    private float progress;
+    // For the text in the animations these variables are reused.
+    private String line1;
+    private String line2;
 
     public TimerView(Context context) {
         super(context);
@@ -40,24 +47,31 @@ public class TimerView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+
+        // The center of the canvas.
         float centerY = canvas.getHeight() / 2;
         float centerX = canvas.getWidth() / 2;
 
-//        if (text != null && text2 != null) {
-//            canvas.drawText(text, (float) (canvas.getWidth() * .10), (float) (canvas.getHeight() * .10), textPaint);
-//            canvas.drawText(text2, (float) (canvas.getWidth() * .12), (float) (canvas.getHeight() * .20), textPaint);
-//
-//        }
+        // Display this if the animation is not running.
+        if (stop) {
 
-        // As a test lets make a simple progress bar
-        canvas.drawRect( centerX - 20, centerY + 200 - (progress / 50), centerX + 20, centerY + 200, fillPaint);
-        canvas.drawRect( centerX - 20, centerY + 200 - (20000 / 50), centerX + 20, centerY + 200, strokePaint);
+        }
+
+        // Display this if the animation is currently running.
+        else {
+            // As a test lets make a simple progress bar
+            canvas.drawRect(centerX - 20, centerY + 200 - (progress / 50), centerX + 20, centerY + 200, fillPaint);
+            canvas.drawRect(centerX - 20, centerY + 200 - (20000 / 50), centerX + 20, centerY + 200, strokePaint);
+
+        }
+
     }
 
     private void init() {
+        // Make sure that the onDraw method will get called.
         super.setWillNotDraw(false);
-        duration = 100;
 
+        // Create the paint.
         fillPaint = new Paint();
         fillPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         fillPaint.setAntiAlias(true);
@@ -67,11 +81,14 @@ public class TimerView extends View {
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setAntiAlias(true);
         strokePaint.setColor(Color.BLUE);
-        this.invalidate();
+
+        // Call the onDraw method.
         this.invalidate();
     }
 
     public void animate(double cups, int grams) {
+        stop = false;
+
         startTime = 0;
         progress = 1;
 
@@ -95,27 +112,24 @@ public class TimerView extends View {
 
                 currentTime = System.currentTimeMillis() - startTime;
 
-                if (currentTime < 10000) {
-                    text = "Pour just enough water to wet the grounds,";
-                    text2 = "and let the coffee bloom for 30 seconds";
-                } else {
-                    text = null;
-                    text2 = null;
+                if (currentTime < bloomTime) {
+                    line1 = "Pour just enough water to completely wet the grounds,";
+                    line2 = "and let the coffee bloom for 30 seconds";
                 }
 
-                // Make a simple progress bar.
+                // Make a simple progress bar that runs for 20 seconds.
                 if (currentTime < 20000) {
-                    progress =  currentTime;
+                    progress = currentTime;
                 }
 
-                // Stop the animation after 11 seconds.
+                // Stop the animation after 20 seconds.
                 if (currentTime > 20000) {
                     Log.v("From TimerView", "Runnable ended.");
                     return;
 
                 }
 
-                // Wait one second before updating the view.
+                // Wait one tenth of a second before updating the view.
                 mHandler.postDelayed(this, 100);
 
                 // Invalidate the old view in order to draw the new one.
@@ -124,12 +138,7 @@ public class TimerView extends View {
         };
 
         runnable.run();
-    }
 
-    /**
-     * Stop the animation.
-     */
-    public void stop() {
-        stop = true;
+        this.invalidate();
     }
 }
