@@ -22,4 +22,11 @@
         android:inputType="number"
         android:textColor="@color/primary_text_default_material_light"/>
 
+    <EditTextPreference
+        android:key="@string/pred_bloom_time_key"
+        android:title="@string/pred_bloom_time_title"
+        android:defaultValue="@integer/thirty"
+        android:inputType="number"
+        android:textColor="@color/primary_text_default_material_light"/>
+
 </PreferenceScreen>

@@ -1,11 +1,13 @@
 package me.hudsonclark.pouroverplus.view;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -25,8 +27,6 @@ public class TimerView extends View {
     private Paint strokePaint;
     private Paint textPaint;
 
-    private final int bloomTime = 30;
-
     // The percent done with the animation.
     private float progress;
 
@@ -44,6 +44,15 @@ public class TimerView extends View {
     Rect bounds1;
     Rect bounds2;
     Rect bounds3;
+
+    // Various times and amounts.
+    private double cups;
+    private int ml;
+    private int bloomTime;
+    private int firstPour;
+    private int secondPour;
+    private int endTime; // Thr end time in seconds.
+    private int grams;
 
 
     public TimerView(Context context) {
@@ -66,10 +75,6 @@ public class TimerView extends View {
 
         // Display this if the animation is currently running.
         else {
-            // As a test lets make a simple progress bar
-            canvas.drawRect(centerX - 20, centerY + 200 - (progress / 50), centerX + 20, centerY + 200, fillPaint);
-            canvas.drawRect(centerX - 20, centerY + 200 - (20000 / 50), centerX + 20, centerY + 200, strokePaint);
-
             // Center the text on the canvas and draw it.
             textPaint.getTextBounds(line1, 0, line1.length(), bounds1);
             canvas.drawText(line1, (centerX - (bounds1.width() / 2)), (float) (canvas.getHeight() * .05), textPaint);
@@ -112,6 +117,9 @@ public class TimerView extends View {
         bounds2 = new Rect();
         bounds3 = new Rect();
 
+        // Calculate all of the times for the pourover.
+
+
         // Call the onDraw method.
         this.invalidate();
     }
@@ -119,9 +127,9 @@ public class TimerView extends View {
     public void animate(double cups, int grams) {
         stop = false;
 
-        startTime = 0;
-        progress = 1;
+        calculateTimesandAmounts(cups, grams);
 
+        startTime = 0;
         mHandler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -142,24 +150,28 @@ public class TimerView extends View {
 
                 currentTime = System.currentTimeMillis() - startTime;
 
-                if (currentTime < bloomTime) {
+                // From 0 to the bloom time.
+                if (currentTime < bloomTime * 1000) {
                     line1 = "Pour just enough water to completely";
                     line2 = "cover the coffee and let the coffee bloom";
                     line3 = "for 30 seconds";
                 }
 
-                // Make a simple progress bar that runs for 20 seconds.
-                if (currentTime < 20000) {
-                    progress = currentTime;
+                // From the end of the bloom time to the start of the second pour.
+                else if (currentTime < secondPour * 1000) {
+
                 }
 
-                // Stop the animation after 20 seconds.
-                if (currentTime > 20000) {
+                // From the end of the first pour to the end time.
+                else if (currentTime > secondPour * 1000) {
+
+                }
+
+                // Stop the animation.
+                if (currentTime > endTime * 1000) {
                     Log.v("From TimerView", "Runnable ended.");
                     stop = true;
-
                 }
-
                 // Wait one tenth of a second before updating the view.
                 mHandler.postDelayed(this, 100);
 
@@ -171,5 +183,29 @@ public class TimerView extends View {
         runnable.run();
 
         this.invalidate();
+    }
+
+
+    // Calculate the times and amounts of various things.
+    private void calculateTimesandAmounts(double cups, int grams) {
+        this.grams = grams;
+        this.cups = cups;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        try {
+            bloomTime = Integer.parseInt(prefs.getString("bloom", "30"));
+            ml = (int) Math.round(Integer.parseInt(prefs.getString("ml", "300")) * cups);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            bloomTime = 30;
+            ml = (int) Math.round(300 * cups);
+        }
+
+        // calculate the end time.
+        endTime = (int) Math.round(cups * 3 * 60);
+
+        // Calculate how long the two pours should.
+        // It is half the total time with the bloom time added on.
+        secondPour = (endTime / 2) + bloomTime;
     }
 }

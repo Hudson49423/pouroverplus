@@ -21,10 +21,13 @@
     <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="pref_water_key">water</string>
     <string name="pref_water_title">mL of water per cup</string>
+    <string name="pred_bloom_time_key">bloom</string>
+    <string name="pred_bloom_time_title">The time for coffee to bloom</string>
 
     <integer name="nineteen">19</integer>
     <integer name="two">2</integer>
     <integer name="three_hundred">300</integer>
+    <integer name="thirty">30</integer>
 
     <string name="title_activity_test">test</string>
 
