@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -39,10 +40,16 @@ public class TimerView extends View {
     // For the text in the animations these variables are reused.
     private String line1;
     private String line2;
+    private String line3;
+    Rect bounds1;
+    Rect bounds2;
+    Rect bounds3;
+
 
     public TimerView(Context context) {
         super(context);
         init();
+        stop = true;
     }
 
     @Override
@@ -63,6 +70,15 @@ public class TimerView extends View {
             canvas.drawRect(centerX - 20, centerY + 200 - (progress / 50), centerX + 20, centerY + 200, fillPaint);
             canvas.drawRect(centerX - 20, centerY + 200 - (20000 / 50), centerX + 20, centerY + 200, strokePaint);
 
+            // Center the text on the canvas and draw it.
+            textPaint.getTextBounds(line1, 0, line1.length(), bounds1);
+            canvas.drawText(line1, (centerX - (bounds1.width() / 2)), (float) (canvas.getHeight() * .05), textPaint);
+
+            textPaint.getTextBounds(line2, 0, line2.length(), bounds2);
+            canvas.drawText(line2, (centerX - (bounds2.width() / 2)), (float) (canvas.getHeight() * .1), textPaint);
+
+            textPaint.getTextBounds(line3, 0, line3.length(), bounds3);
+            canvas.drawText(line3, (centerX - (bounds3.width() / 2)), (float) (canvas.getHeight() * .15), textPaint);
         }
 
     }
@@ -81,6 +97,20 @@ public class TimerView extends View {
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setAntiAlias(true);
         strokePaint.setColor(Color.BLUE);
+
+        textPaint = new Paint();
+        textPaint.setStyle(Paint.Style.STROKE);
+        textPaint.setAntiAlias(true);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(70);
+
+        // Create the strings
+        line1 = "";
+        line2 = "";
+        line3 = "";
+        bounds1 = new Rect();
+        bounds2 = new Rect();
+        bounds3 = new Rect();
 
         // Call the onDraw method.
         this.invalidate();
@@ -113,8 +143,9 @@ public class TimerView extends View {
                 currentTime = System.currentTimeMillis() - startTime;
 
                 if (currentTime < bloomTime) {
-                    line1 = "Pour just enough water to completely wet the grounds,";
-                    line2 = "and let the coffee bloom for 30 seconds";
+                    line1 = "Pour just enough water to completely";
+                    line2 = "cover the coffee and let the coffee bloom";
+                    line3 = "for 30 seconds";
                 }
 
                 // Make a simple progress bar that runs for 20 seconds.
@@ -125,7 +156,7 @@ public class TimerView extends View {
                 // Stop the animation after 20 seconds.
                 if (currentTime > 20000) {
                     Log.v("From TimerView", "Runnable ended.");
-                    return;
+                    stop = true;
 
                 }
 
