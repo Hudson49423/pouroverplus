@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import me.hudsonclark.pouroverplus.view.TimerView;
 
@@ -19,6 +20,9 @@ public class Home extends ActionBarActivity {
         if (toolbar != null)
             setSupportActionBar(toolbar);
         setContentView(R.layout.activity_home);
+
+        // Keep the screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
 

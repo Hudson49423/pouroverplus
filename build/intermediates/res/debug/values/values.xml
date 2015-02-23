@@ -186,14 +186,14 @@
     <string name="lets_go_button">Let\'s Go!</string>
     <string name="num_coffee">19</string>
     <string name="num_cups">1</string>
-    <string name="pred_bloom_time_key">bloom</string>
-    <string name="pred_bloom_time_title">The time for coffee to bloom</string>
+    <string name="pref_bloom_time_key">bloom</string>
+    <string name="pref_bloom_time_title">Bloom time</string>
     <string name="pref_grams_key">grams</string>
     <string name="pref_grams_title">Grams of coffee per cup</string>
     <string name="pref_tablespoons_key">tablespoons</string>
     <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="pref_water_key">water</string>
-    <string name="pref_water_title">mL of water per cup</string>
+    <string name="pref_water_title">Milliliters of water per cup</string>
     <string name="title_activity_home">home</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_test">test</string>

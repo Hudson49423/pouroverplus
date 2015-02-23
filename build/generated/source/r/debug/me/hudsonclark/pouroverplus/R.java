@@ -1461,8 +1461,8 @@ containing a value of this type.
         public static final int lets_go_button=0x7f0b0017;
         public static final int num_coffee=0x7f0b0018;
         public static final int num_cups=0x7f0b0019;
-        public static final int pred_bloom_time_key=0x7f0b001a;
-        public static final int pred_bloom_time_title=0x7f0b001b;
+        public static final int pref_bloom_time_key=0x7f0b001a;
+        public static final int pref_bloom_time_title=0x7f0b001b;
         public static final int pref_grams_key=0x7f0b001c;
         public static final int pref_grams_title=0x7f0b001d;
         public static final int pref_tablespoons_key=0x7f0b001e;
