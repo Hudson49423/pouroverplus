@@ -20,9 +20,9 @@
     <string name="pref_grams_title">Grams of coffee per cup</string>
     <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="pref_water_key">water</string>
-    <string name="pref_water_title">mL of water per cup</string>
-    <string name="pred_bloom_time_key">bloom</string>
-    <string name="pred_bloom_time_title">The time for coffee to bloom</string>
+    <string name="pref_water_title">Milliliters of water per cup</string>
+    <string name="pref_bloom_time_key">bloom</string>
+    <string name="pref_bloom_time_title">Bloom time</string>
 
     <integer name="nineteen">19</integer>
     <integer name="two">2</integer>
