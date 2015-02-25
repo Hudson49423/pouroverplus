@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -36,9 +38,11 @@ public class TimerView extends View {
     private String line1;
     private String line2;
     private String line3;
-    Rect bounds1;
-    Rect bounds2;
-    Rect bounds3;
+    private Rect bounds1;
+    private Rect bounds2;
+    private Rect bounds3;
+    private RectF oval;
+    private Path waterPath;
 
     // Various times and amounts.
     private double cups;
@@ -56,6 +60,13 @@ public class TimerView extends View {
     private String timeString;
     private String remainingTimeString;
     private int re;
+    private int stage;
+    private double theta;
+    private float waterWidth;
+    private float waterHeight;
+    private float lowHeight;
+    private float highHeight;
+    private double progress;
 
     public TimerView(Context context) {
         super(context);
@@ -92,12 +103,38 @@ public class TimerView extends View {
             canvas.drawText(line3, (centerX - (bounds3.width() / 2)), (float) (height * .15), textPaint);
 
             // Draw the current Time
-            canvas.drawText("Current", (float) (width * .05), ((float) (height * .8)), timerPaint);
-            canvas.drawText(timeString, (float) (width * .1), ((float) (height * .8)) + 100, timerPaint);
+            canvas.drawText("Current", (float) (width * .05), ((float) (height * .85)), timerPaint);
+            canvas.drawText(timeString, (float) (width * .1), ((float) (height * .85)) + 100, timerPaint);
 
             // Draw the remaining time.
-            canvas.drawText("Remaining", (float) (width * .6), ((float) (height * .8)), timerPaint);
-            canvas.drawText(remainingTimeString, (float) (width * .65), ((float) (height * .8)) + 100, timerPaint);
+            canvas.drawText("Remaining", (float) (width * .6), ((float) (height * .85)), timerPaint);
+            canvas.drawText(remainingTimeString, (float) (width * .7), ((float) (height * .85)) + 100, timerPaint);
+
+
+            // Draw the actual pourover.
+            oval.set((float) (width * .2), (float) (height * .3), (float) (width * .8), (float) (height * .35));
+            canvas.drawOval(oval, strokePaint);
+
+            lowHeight = (float) (height * .75);
+            highHeight = (float) (height * .325);
+
+            canvas.drawLine((float) (width * .2), highHeight, centerX, lowHeight, strokePaint);
+            canvas.drawLine((float) (width * .8), highHeight, centerX, lowHeight, strokePaint);
+
+            theta = Math.atan((centerX - (width * .2)) / (lowHeight - highHeight));
+
+            waterPath.moveTo(centerX,lowHeight); // Starting point is always the same.
+
+            waterHeight = ((float) (lowHeight - ((lowHeight - highHeight) * progress)));
+            waterWidth = ((float) (Math.tan(theta) * (lowHeight - waterHeight)));
+
+            waterPath.lineTo(centerX + waterWidth, waterHeight);
+            waterPath.lineTo(centerX - waterWidth, waterHeight);
+
+            waterPath.lineTo(centerX, lowHeight); // Ending point is always the same.
+
+            canvas.drawPath(waterPath, fillPaint);
+
         }
 
     }
@@ -116,6 +153,7 @@ public class TimerView extends View {
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setAntiAlias(true);
         strokePaint.setColor(Color.BLUE);
+        strokePaint.setStrokeWidth(5);
 
         textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
@@ -136,9 +174,8 @@ public class TimerView extends View {
         bounds1 = new Rect();
         bounds2 = new Rect();
         bounds3 = new Rect();
-
-        // Calculate all of the times for the pourover.
-
+        oval = new RectF();
+        waterPath = new Path();
 
         // Call the onDraw method.
         this.invalidate();
@@ -186,11 +223,15 @@ public class TimerView extends View {
                 else
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
 
+                progress =(float) (currentTime / 1000) / endTime;
+                Log.v("Progress", "" + progress);
+
                 // From 0 to the bloom time.  ------------------------------------------------------
                 if (currentTime < bloomTime * 1000) {
                     line1 = "Pour just enough water to completely";
                     line2 = "cover the coffee and let the coffee bloom";
                     line3 = "for 30 seconds";
+                    stage = 1;
                 }
 
                 // From the end of the bloom time to the start of the second pour.
@@ -198,6 +239,7 @@ public class TimerView extends View {
                     line1 = "Pour half of the water (" + firstPourAmount + "mL)";
                     line2 = "over the coffee in a circular motion.";
                     line3 = "Be careful not to hit the sides of the filter!";
+                    stage = 2;
                 }
 
                 // From the end of the first pour to the end time.
@@ -205,6 +247,7 @@ public class TimerView extends View {
                     line1 = "Pour the remaining water over the coffee";
                     line2 = "As soon as all water has drained, enjoy!";
                     line3 = "";
+                    stage = 3;
                 }
 
                 // Stop the animation.
