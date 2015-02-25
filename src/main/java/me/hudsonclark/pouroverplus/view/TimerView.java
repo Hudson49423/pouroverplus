@@ -71,6 +71,7 @@ public class TimerView extends View {
     private float waterHeight;
     private float lowHeight;
     private float highHeight;
+    private int i;
 
     // This is the percentage of the pourover that is filled.
     private double progress;
@@ -202,17 +203,17 @@ public class TimerView extends View {
         stop = false;
 
         calculateTimesAndAmounts(cups, grams);
+        i = 0;
 
         startTime = System.currentTimeMillis();
         runnable = new Runnable() {
             @Override
             public void run() {
+                i++;
 
                 // See if we should stop the animation.
                 if (stop)
                     return;
-
-                Log.v("From TimerView", "Runnable going.");
 
                 currentTime = (System.currentTimeMillis() - startTime) / 1000;
 
@@ -233,13 +234,21 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
                 // ---------------------------------------------------------------------------------
 
-                progress =(float) currentTime / endTime;
 
                 // From 0 to the bloom time.
                 if (currentTime < bloomTime) {
                     line1 = "Pour just enough water to completely";
                     line2 = "cover the coffee and let the coffee bloom";
                     line3 = "for 30 seconds";
+
+                    // In this stage, water should be filled up a little, and should not drain,
+                    // Therefore, progress should climb to .3 and stay there the remained for the
+                    // Stage.
+
+                    // Stop the progress at .3
+                    if (progress < .3) {
+                        progress = ((float) i / 1000) * 4.5; // 4.5 is accelerating it.
+                    }
                     stage = 1;
                 }
 
