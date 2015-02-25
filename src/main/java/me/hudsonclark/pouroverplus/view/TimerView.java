@@ -53,19 +53,26 @@ public class TimerView extends View {
     private int secondPour;
     private int endTime; // The end time in seconds.
 
+    // Used in creating the timers.
     private int minutes;
     private int seconds;
     private int remainingMinutes;
     private int remainingSeconds;
     private String timeString;
     private String remainingTimeString;
-    private int re;
+    private int re; // The remaining time in seconds.
+
+    // The stage that the pour over in currently in.
     private int stage;
+
+    // These variables are used in the onDraw method.
     private double theta;
     private float waterWidth;
     private float waterHeight;
     private float lowHeight;
     private float highHeight;
+
+    // This is the percentage of the pourover that is filled.
     private double progress;
 
     public TimerView(Context context) {
@@ -115,6 +122,7 @@ public class TimerView extends View {
             oval.set((float) (width * .2), (float) (height * .3), (float) (width * .8), (float) (height * .35));
             canvas.drawOval(oval, strokePaint);
 
+
             lowHeight = (float) (height * .75);
             highHeight = (float) (height * .325);
 
@@ -125,6 +133,7 @@ public class TimerView extends View {
 
             waterPath.moveTo(centerX,lowHeight); // Starting point is always the same.
 
+            // Here is where the height of the "water" is actually determined.
             waterHeight = ((float) (lowHeight - ((lowHeight - highHeight) * progress)));
             waterWidth = ((float) (Math.tan(theta) * (lowHeight - waterHeight)));
 
@@ -133,6 +142,7 @@ public class TimerView extends View {
 
             waterPath.lineTo(centerX, lowHeight); // Ending point is always the same.
 
+            // Draw the path that was just created.
             canvas.drawPath(waterPath, fillPaint);
 
         }
@@ -142,6 +152,9 @@ public class TimerView extends View {
     private void init() {
         // Make sure that the onDraw method will get called.
         super.setWillNotDraw(false);
+
+        // Create the handler.
+        mHandler = new Handler();
 
         // Create the paint.
         fillPaint = new Paint();
@@ -171,10 +184,14 @@ public class TimerView extends View {
         line1 = "";
         line2 = "";
         line3 = "";
+
+        // Create the bounds that are used to center strings.
         bounds1 = new Rect();
         bounds2 = new Rect();
         bounds3 = new Rect();
         oval = new RectF();
+
+        // Create the path that is used to draw the triangle of water.
         waterPath = new Path();
 
         // Call the onDraw method.
@@ -184,33 +201,25 @@ public class TimerView extends View {
     public void animate(double cups, int grams) {
         stop = false;
 
-        calculateTimesandAmounts(cups, grams);
+        calculateTimesAndAmounts(cups, grams);
 
-        startTime = 0;
-        mHandler = new Handler();
+        startTime = System.currentTimeMillis();
         runnable = new Runnable() {
             @Override
             public void run() {
-
-                Log.v("From TimerView", "Runnable going.");
 
                 // See if we should stop the animation.
                 if (stop)
                     return;
 
-                // Set the starttime if we need to.
-                // Maybe move this outside of the main running loop since
-                // it only ever needs to be executed once.
-                if (startTime == 0)
-                    startTime = System.currentTimeMillis();
+                Log.v("From TimerView", "Runnable going.");
 
-
-                currentTime = System.currentTimeMillis() - startTime;
+                currentTime = (System.currentTimeMillis() - startTime) / 1000;
 
                 // Get the seconds and minutes -----------------------------------------------------
-                seconds = Math.round(currentTime / 1000) % 60;
-                minutes = Math.round(currentTime / 1000) / 60;
-                re = endTime - Math.round(currentTime / 1000);
+                seconds = Math.round(currentTime % 600);
+                minutes = Math.round(currentTime / 60);
+                re = endTime - Math.round(currentTime);
                 remainingMinutes = re / 60;
                 remainingSeconds = re % 60;
 
@@ -222,12 +231,12 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":0" + remainingSeconds;
                 else
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
+                // ---------------------------------------------------------------------------------
 
-                progress =(float) (currentTime / 1000) / endTime;
-                Log.v("Progress", "" + progress);
+                progress =(float) currentTime / endTime;
 
-                // From 0 to the bloom time.  ------------------------------------------------------
-                if (currentTime < bloomTime * 1000) {
+                // From 0 to the bloom time.
+                if (currentTime < bloomTime) {
                     line1 = "Pour just enough water to completely";
                     line2 = "cover the coffee and let the coffee bloom";
                     line3 = "for 30 seconds";
@@ -235,7 +244,7 @@ public class TimerView extends View {
                 }
 
                 // From the end of the bloom time to the start of the second pour.
-                else if (currentTime < secondPour * 1000) {
+                else if (currentTime < secondPour) {
                     line1 = "Pour half of the water (" + firstPourAmount + "mL)";
                     line2 = "over the coffee in a circular motion.";
                     line3 = "Be careful not to hit the sides of the filter!";
@@ -243,7 +252,7 @@ public class TimerView extends View {
                 }
 
                 // From the end of the first pour to the end time.
-                else if (currentTime > secondPour * 1000) {
+                else if (currentTime > secondPour) {
                     line1 = "Pour the remaining water over the coffee";
                     line2 = "As soon as all water has drained, enjoy!";
                     line3 = "";
@@ -251,14 +260,14 @@ public class TimerView extends View {
                 }
 
                 // Stop the animation.
-                if (currentTime > endTime * 1000) {
+                if (currentTime > endTime) {
                     Log.v("From TimerView", "Runnable ended.");
                     stop = true;
                 }
-                // Wait one tenth of a second before updating the view.
-                mHandler.postDelayed(this, 100);
+                // Wait 1/20 of a second before updating the view.
+                mHandler.postDelayed(this, 50);
 
-                // Invalidate the old view in order to draw the new one.
+                // Call the onDraw method.
                 TimerView.this.invalidate();
             }
         };
@@ -270,11 +279,12 @@ public class TimerView extends View {
 
 
     // Calculate the times and amounts of various things.
-    private void calculateTimesandAmounts(double cups, int grams) {
+    private void calculateTimesAndAmounts(double cups, int grams) {
         this.grams = grams;
         this.cups = cups;
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         try {
             bloomTime = Integer.parseInt(prefs.getString("bloom", "30"));
             ml = (int) Math.round(Integer.parseInt(prefs.getString("ml", "300")) * cups);
@@ -293,7 +303,5 @@ public class TimerView extends View {
         // Calculate how long the two pours should.
         // It is half the total time with the bloom time added on.
         secondPour = (endTime / 2) + bloomTime;
-
-
     }
 }
