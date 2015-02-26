@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Handler;
@@ -71,7 +72,9 @@ public class TimerView extends View {
     private float waterHeight;
     private float lowHeight;
     private float highHeight;
-    private int i;
+
+    // Used to decide whether or not to start "draining"
+    private boolean drain;
 
     // This is the percentage of the pourover that is filled.
     private double progress;
@@ -84,6 +87,8 @@ public class TimerView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+
+        canvas.drawColor(Color.WHITE);
 
         // The center of the canvas.
         float centerY = canvas.getHeight() / 2;
@@ -132,6 +137,7 @@ public class TimerView extends View {
 
             theta = Math.atan((centerX - (width * .2)) / (lowHeight - highHeight));
 
+            waterPath.reset(); // Important.
             waterPath.moveTo(centerX,lowHeight); // Starting point is always the same.
 
             // Here is where the height of the "water" is actually determined.
@@ -195,21 +201,25 @@ public class TimerView extends View {
         // Create the path that is used to draw the triangle of water.
         waterPath = new Path();
 
+        // Drain should start as false.
+        drain = false;
+
         // Call the onDraw method.
         this.invalidate();
     }
 
     public void animate(double cups, int grams) {
+        this.invalidate();
+
         stop = false;
 
         calculateTimesAndAmounts(cups, grams);
-        i = 0;
-
+        drain = false;
+        progress = 0;
         startTime = System.currentTimeMillis();
         runnable = new Runnable() {
             @Override
             public void run() {
-                i++;
 
                 // See if we should stop the animation.
                 if (stop)
@@ -218,7 +228,7 @@ public class TimerView extends View {
                 currentTime = (System.currentTimeMillis() - startTime) / 1000;
 
                 // Get the seconds and minutes -----------------------------------------------------
-                seconds = Math.round(currentTime % 600);
+                seconds = Math.round(currentTime % 60);
                 minutes = Math.round(currentTime / 60);
                 re = endTime - Math.round(currentTime);
                 remainingMinutes = re / 60;
@@ -239,7 +249,7 @@ public class TimerView extends View {
                 if (currentTime < bloomTime) {
                     line1 = "Pour just enough water to completely";
                     line2 = "cover the coffee and let the coffee bloom";
-                    line3 = "for 30 seconds";
+                    line3 = "for " + bloomTime + " seconds";
 
                     // In this stage, water should be filled up a little, and should not drain,
                     // Therefore, progress should climb to .3 and stay there the remained for the
@@ -247,17 +257,33 @@ public class TimerView extends View {
 
                     // Stop the progress at .3
                     if (progress < .3) {
-                        progress = ((float) i / 1000) * 4.5; // 4.5 is accelerating it.
+                        progress = progress + .01;
                     }
-                    stage = 1;
                 }
 
                 // From the end of the bloom time to the start of the second pour.
                 else if (currentTime < secondPour) {
-                    line1 = "Pour half of the water (" + firstPourAmount + "mL)";
+                    line1 = "Pour half of the water (" + secondPour + "mL) slowly";
                     line2 = "over the coffee in a circular motion.";
                     line3 = "Be careful not to hit the sides of the filter!";
-                    stage = 2;
+
+                    // Here water should be filled up more.
+                    // After it is filled up more it should "drain".
+
+                    //Decide whether or not we should start draining the water.
+                    if (progress > .69) {
+                        drain = true;
+                    }
+
+                    if (!drain) {
+                        // Take 1/3 of the time to fill up with water.
+                        progress = progress + (.4f / ((secondPour / 3) * 20f));
+                    }
+
+                    else {
+                        // Take 2/3 of the time to fill up with water.
+                        progress = progress - (.3f / ((secondPour / 1.5) * 20f));
+                    }
                 }
 
                 // From the end of the first pour to the end time.
