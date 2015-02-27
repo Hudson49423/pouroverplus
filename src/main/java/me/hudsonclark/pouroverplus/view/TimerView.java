@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Handler;
@@ -16,6 +15,8 @@ import android.view.View;
 
 /**
  * Created by hudson49423 on 2/19/15.
+ * A simple view class for animating pour over timers and
+ * an animation for the brew process.
  */
 public class TimerView extends View {
 
@@ -248,7 +249,7 @@ public class TimerView extends View {
                 // From 0 to the bloom time.
                 if (currentTime < bloomTime) {
                     line1 = "Pour just enough water to completely";
-                    line2 = "cover the coffee and let the coffee bloom";
+                    line2 = "" + progress; //"cover the coffee and let the coffee bloom";
                     line3 = "for " + bloomTime + " seconds";
 
                     // In this stage, water should be filled up a little, and should not drain,
@@ -257,18 +258,20 @@ public class TimerView extends View {
 
                     // Stop the progress at .3
                     if (progress < .3) {
-                        progress = progress + .01;
+                        progress = progress + .005; // Constant rate.
                     }
                 }
 
                 // From the end of the bloom time to the start of the second pour.
-                else if (currentTime < secondPour) {
+                else if (currentTime < (secondPour + bloomTime)) {
                     line1 = "Pour half of the water (" + secondPour + "mL) slowly";
-                    line2 = "over the coffee in a circular motion.";
+                    line2 = "" + progress; //"over the coffee in a circular motion."
                     line3 = "Be careful not to hit the sides of the filter!";
 
                     // Here water should be filled up more.
                     // After it is filled up more it should "drain".
+                    // The rate changes depending on how long the
+                    // pour should take.
 
                     //Decide whether or not we should start draining the water.
                     if (progress > .69) {
@@ -277,20 +280,42 @@ public class TimerView extends View {
 
                     if (!drain) {
                         // Take 1/3 of the time to fill up with water.
-                        progress = progress + (.4f / ((secondPour / 3) * 20f));
+                        progress = progress + (.4f / ((secondPour / 2 ) * 20f));
                     }
 
                     else {
-                        // Take 2/3 of the time to fill up with water.
-                        progress = progress - (.3f / ((secondPour / 1.5) * 20f));
+                        // Take 2/3 of the time to drain some of the water.
+                        progress = progress - (.3f / ((secondPour / 2) * 20f));
                     }
                 }
 
                 // From the end of the first pour to the end time.
-                else if (currentTime > secondPour) {
-                    line1 = "Pour the remaining water over the coffee";
-                    line2 = "As soon as all water has drained, enjoy!";
+                else if (currentTime > (secondPour + bloomTime)) {
+
+                    line1 = "pour the remaining water over the coffee";
+                    line2 = "as soon as all water has drained, enjoy!";
                     line3 = "";
+
+                    // in this stage we want to pour the rest of the water and
+                    // then let all of the water drain.
+
+                    // as soon as the water has gotten up to this point,
+                    // it is time to drain completely.
+                    if (progress > .78) {
+                        drain = false;
+                    }
+
+                    // Drain is reversed because of the previous stage.
+                    if (drain) {
+                        // take 1/3 of the time to fill up with water.
+                        progress = progress + (.4f / ((secondPour / 2) * 20f));
+                    }
+
+                    else {
+                        // take 2/3 of the time to drain some of the water.
+                        progress = progress - (.8f / ((secondPour / 2) * 20f));
+                    }
+
                     stage = 3;
                 }
 
@@ -337,6 +362,13 @@ public class TimerView extends View {
 
         // Calculate how long the two pours should.
         // It is half the total time with the bloom time added on.
-        secondPour = (endTime / 2) + bloomTime;
+
+        // The endtime is always 3 minutes * the number of cups.
+        // So, we should first take to bloom time out of the
+        // Time since the user picks it.
+        // Now, we say that the pours should be split evenly.
+
+
+        secondPour = ((endTime - bloomTime) / 2);
     }
 }

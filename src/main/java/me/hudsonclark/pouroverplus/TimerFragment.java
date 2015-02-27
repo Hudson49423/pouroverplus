@@ -30,13 +30,11 @@ public class TimerFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         TimerView.stop = true;
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
         TimerView.stop = true;
-
     }
 }

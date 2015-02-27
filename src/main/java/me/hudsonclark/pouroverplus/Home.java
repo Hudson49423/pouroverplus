@@ -47,6 +47,7 @@ public class Home extends ActionBarActivity {
             return true;
         }
         if (id == R.id.action_help) {
+            // TODO create help activity.
             return true;
         }
 
@@ -56,6 +57,8 @@ public class Home extends ActionBarActivity {
     @Override
     public void onPause() {
         super.onPause();
+
+        // Stop the animation.
         TimerView.stop = true;
     }
 }
