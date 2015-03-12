@@ -74,6 +74,17 @@ public class TimerView extends View {
     private float lowHeight;
     private float highHeight;
 
+    // String constants to use as instructions.
+    private final String bloomInstruction1 = "Pour just enough water to completely";
+    private final String bloomInstruction2 = "cover the coffee and let the coffee bloom";
+    // No instruction three because we need to incorporate time into the string.
+    // No instruction one for same reason.
+    private final String firstPourInstruction2 = "over the coffee in a circular motion";
+    private final String firstPourInstruction3 = "Be careful not to hit the sides of the filter!";
+    private final String secondPourInstruction1 = "pour the remaining water over the coffee";
+    private final String secondPourInstruction2 = "as soon as all water has drained, enjoy!";
+    // private final String secondPourInstruction3 = "";
+
     // Used to decide whether or not to start "draining"
     private boolean drain;
 
@@ -139,7 +150,7 @@ public class TimerView extends View {
             theta = Math.atan((centerX - (width * .2)) / (lowHeight - highHeight));
 
             waterPath.reset(); // Important.
-            waterPath.moveTo(centerX,lowHeight); // Starting point is always the same.
+            waterPath.moveTo(centerX, lowHeight); // Starting point is always the same.
 
             // Here is where the height of the "water" is actually determined.
             waterHeight = ((float) (lowHeight - ((lowHeight - highHeight) * progress)));
@@ -221,14 +232,11 @@ public class TimerView extends View {
         runnable = new Runnable() {
             @Override
             public void run() {
-
                 // See if we should stop the animation.
                 if (stop)
                     return;
-
-                currentTime = (System.currentTimeMillis() - startTime) / 1000;
-
                 // Get the seconds and minutes -----------------------------------------------------
+                currentTime = (System.currentTimeMillis() - startTime) / 1000;
                 seconds = Math.round(currentTime % 60);
                 minutes = Math.round(currentTime / 60);
                 re = endTime - Math.round(currentTime);
@@ -245,45 +253,36 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
                 // ---------------------------------------------------------------------------------
 
-
                 // From 0 to the bloom time.
                 if (currentTime < bloomTime) {
-                    line1 = "Pour just enough water to completely";
-                    line2 = "" + progress; //"cover the coffee and let the coffee bloom";
+                    line1 = bloomInstruction1;
+                    line2 = bloomInstruction2;
                     line3 = "for " + bloomTime + " seconds";
-
                     // In this stage, water should be filled up a little, and should not drain,
                     // Therefore, progress should climb to .3 and stay there the remained for the
                     // Stage.
-
                     // Stop the progress at .3
                     if (progress < .3) {
                         progress = progress + .005; // Constant rate.
                     }
                 }
-
                 // From the end of the bloom time to the start of the second pour.
                 else if (currentTime < (secondPour + bloomTime)) {
                     line1 = "Pour half of the water (" + secondPour + "mL) slowly";
-                    line2 = "" + progress; //"over the coffee in a circular motion."
-                    line3 = "Be careful not to hit the sides of the filter!";
-
+                    line2 = firstPourInstruction2;
+                    line3 = firstPourInstruction3;
                     // Here water should be filled up more.
                     // After it is filled up more it should "drain".
                     // The rate changes depending on how long the
                     // pour should take.
-
                     //Decide whether or not we should start draining the water.
                     if (progress > .69) {
                         drain = true;
                     }
-
                     if (!drain) {
                         // Take 1/3 of the time to fill up with water.
-                        progress = progress + (.4f / ((secondPour / 2 ) * 20f));
-                    }
-
-                    else {
+                        progress = progress + (.4f / ((secondPour / 2) * 20f));
+                    } else {
                         // Take 2/3 of the time to drain some of the water.
                         progress = progress - (.3f / ((secondPour / 2) * 20f));
                     }
@@ -291,34 +290,26 @@ public class TimerView extends View {
 
                 // From the end of the first pour to the end time.
                 else if (currentTime > (secondPour + bloomTime)) {
-
-                    line1 = "pour the remaining water over the coffee";
-                    line2 = "as soon as all water has drained, enjoy!";
+                    line1 = secondPourInstruction1;
+                    line2 = secondPourInstruction2;
                     line3 = "";
-
                     // in this stage we want to pour the rest of the water and
                     // then let all of the water drain.
-
                     // as soon as the water has gotten up to this point,
                     // it is time to drain completely.
                     if (progress > .78) {
                         drain = false;
                     }
-
                     // Drain is reversed because of the previous stage.
                     if (drain) {
                         // take 1/3 of the time to fill up with water.
                         progress = progress + (.4f / ((secondPour / 2) * 20f));
-                    }
-
-                    else {
+                    } else {
                         // take 2/3 of the time to drain some of the water.
                         progress = progress - (.8f / ((secondPour / 2) * 20f));
                     }
-
                     stage = 3;
                 }
-
                 // Stop the animation.
                 if (currentTime > endTime) {
                     Log.v("From TimerView", "Runnable ended.");
@@ -331,9 +322,7 @@ public class TimerView extends View {
                 TimerView.this.invalidate();
             }
         };
-
         runnable.run();
-
         this.invalidate();
     }
 
@@ -353,7 +342,6 @@ public class TimerView extends View {
             bloomTime = 30;
             ml = (int) Math.round(300 * cups);
         }
-
         // calculate the end time.
         endTime = (int) Math.round(cups * 3 * 60);
         // Calculate the amount of water to pour for the first pour.
@@ -367,8 +355,6 @@ public class TimerView extends View {
         // So, we should first take to bloom time out of the
         // Time since the user picks it.
         // Now, we say that the pours should be split evenly.
-
-
         secondPour = ((endTime - bloomTime) / 2);
     }
 }
