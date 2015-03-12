@@ -113,9 +113,10 @@ public class TimerView extends View {
         // Display this if the animation is not running.
         if (stop) {
             progress = 0;
-            line1 = "Change settings as desired,";
-            line2 = "choose how much coffee you want";
-            line3 = " to make, and touch 'Let's Go!'";
+            textPaint.setTextSize(75);
+            line1 = "Touch the '?' for help or to learn";
+            line2 = "more about making a pour over!";
+            //line3 = "";
 
         }
 
@@ -191,7 +192,7 @@ public class TimerView extends View {
         textPaint.setStyle(Paint.Style.STROKE);
         textPaint.setAntiAlias(true);
         textPaint.setColor(Color.RED);
-        textPaint.setTextSize(70);
+        textPaint.setTextSize(65);
 
         timerPaint = new Paint();
         timerPaint.setStyle(Paint.Style.STROKE);
@@ -255,6 +256,9 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":0" + remainingSeconds;
                 else
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
+
+                // TODO when animation has ended, it ends a second over what it should be
+                
                 // ---------------------------------------------------------------------------------
 
                 // From 0 to the bloom time.

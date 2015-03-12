@@ -39,7 +39,9 @@
                     android:layout_height="wrap_content"
                     android:weightSum="3"
                     android:gravity="center"
-                    android:padding="5sp">
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingTop="5sp">
 
                     <Button
                         android:id="@+id/cups_up"
@@ -72,7 +74,7 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="5sp">
+            android:paddingTop="5sp">
 
             <TextView
                 android:id="@+id/grams_text_view"
@@ -93,7 +95,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
-                    android:padding="5sp"
+                    android:paddingLeft="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingTop="5sp"
                     android:layout_centerHorizontal="true">
 
                     <RelativeLayout
@@ -106,7 +110,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="25sp"
-                            android:text="19g"
+                            android:text=""
                             android:gravity="center" />
                     </RelativeLayout>
 
@@ -121,7 +125,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="25sp"
-                            android:text="2tbsp"
+                            android:text=""
                             android:gravity="center"/>
                     </RelativeLayout>
 
@@ -134,8 +138,8 @@
     <Button android:id="@+id/button_start"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
-        android:layout_margin="20sp"
-        android:layout_width="wrap_content"
+        android:layout_margin="10sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="@string/lets_go_button"
