@@ -22,6 +22,7 @@ public class TimerView extends View {
 
     // Whether the animation is able to run.
     public static boolean stop;
+    private boolean initHasBeenCalled;
 
     private Handler mHandler;
     private Runnable runnable;
@@ -76,12 +77,12 @@ public class TimerView extends View {
 
     // String constants to use as instructions.
     private final String bloomInstruction1 = "Pour just enough water to completely";
-    private final String bloomInstruction2 = "cover the coffee and let the coffee bloom";
+    private final String bloomInstruction2 = "cover the coffee and let it coffee bloom";
     // No instruction three because we need to incorporate time into the string.
     // No instruction one for same reason.
     private final String firstPourInstruction2 = "over the coffee in a circular motion";
     private final String firstPourInstruction3 = "Be careful not to hit the sides of the filter!";
-    private final String secondPourInstruction1 = "pour the remaining water over the coffee";
+    private final String secondPourInstruction1 = "Pour the remaining water over the coffee";
     private final String secondPourInstruction2 = "as soon as all water has drained, enjoy!";
     // private final String secondPourInstruction3 = "";
 
@@ -103,7 +104,7 @@ public class TimerView extends View {
         canvas.drawColor(Color.WHITE);
 
         // The center of the canvas.
-        float centerY = canvas.getHeight() / 2;
+        //float centerY = canvas.getHeight() / 2;
         float centerX = canvas.getWidth() / 2;
 
         float height = canvas.getHeight();
@@ -111,21 +112,24 @@ public class TimerView extends View {
 
         // Display this if the animation is not running.
         if (stop) {
+            progress = 0;
+            line1 = "Change settings as desired,";
+            line2 = "choose how much coffee you want";
+            line3 = " to make, and touch 'Let's Go!'";
 
         }
 
-        // Display this if the animation is currently running.
-        else {
+        if (initHasBeenCalled) {
 
             // Draw the instructions.
             textPaint.getTextBounds(line1, 0, line1.length(), bounds1);
-            canvas.drawText(line1, (centerX - (bounds1.width() / 2)), (float) (height * .05), textPaint);
+            canvas.drawText(line1, (centerX - (bounds1.width() / 2)), (float) (height * .075), textPaint);
 
             textPaint.getTextBounds(line2, 0, line2.length(), bounds2);
-            canvas.drawText(line2, (centerX - (bounds2.width() / 2)), (float) (height * .1), textPaint);
+            canvas.drawText(line2, (centerX - (bounds2.width() / 2)), (float) (height * .15), textPaint);
 
             textPaint.getTextBounds(line3, 0, line3.length(), bounds3);
-            canvas.drawText(line3, (centerX - (bounds3.width() / 2)), (float) (height * .15), textPaint);
+            canvas.drawText(line3, (centerX - (bounds3.width() / 2)), (float) (height * .225), textPaint);
 
             // Draw the current Time
             canvas.drawText("Current", (float) (width * .05), ((float) (height * .85)), timerPaint);
@@ -163,19 +167,15 @@ public class TimerView extends View {
 
             // Draw the path that was just created.
             canvas.drawPath(waterPath, fillPaint);
-
         }
-
     }
 
     private void init() {
         // Make sure that the onDraw method will get called.
         super.setWillNotDraw(false);
 
-        // Create the handler.
         mHandler = new Handler();
 
-        // Create the paint.
         fillPaint = new Paint();
         fillPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         fillPaint.setAntiAlias(true);
@@ -199,10 +199,14 @@ public class TimerView extends View {
         timerPaint.setColor(Color.BLUE);
         timerPaint.setTextSize(100);
 
-        // Create the strings
+        // Create the strings.
         line1 = "";
         line2 = "";
         line3 = "";
+
+        // Need to create it so that we don't get any null pointers
+        timeString = "0:00";
+        remainingTimeString = "0:00";
 
         // Create the bounds that are used to center strings.
         bounds1 = new Rect();
@@ -216,15 +220,15 @@ public class TimerView extends View {
         // Drain should start as false.
         drain = false;
 
+        initHasBeenCalled = true;
+
         // Call the onDraw method.
         this.invalidate();
     }
 
     public void animate(double cups, int grams) {
         this.invalidate();
-
         stop = false;
-
         calculateTimesAndAmounts(cups, grams);
         drain = false;
         progress = 0;
