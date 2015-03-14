@@ -77,11 +77,11 @@ public class TimerView extends View {
 
     // String constants to use as instructions.
     private final String bloomInstruction1 = "Pour just enough water to completely";
-    private final String bloomInstruction2 = "cover the coffee and let it coffee bloom";
+    private final String bloomInstruction2 = "cover the coffee and let it bloom";
     // No instruction three because we need to incorporate time into the string.
     // No instruction one for same reason.
     private final String firstPourInstruction2 = "over the coffee in a circular motion";
-    private final String firstPourInstruction3 = "Be careful not to hit the sides of the filter!";
+    private final String firstPourInstruction3 = "Try not to hit the sides of the filter!";
     private final String secondPourInstruction1 = "Pour the remaining water over the coffee";
     private final String secondPourInstruction2 = "as soon as all water has drained, enjoy!";
     // private final String secondPourInstruction3 = "";
@@ -101,7 +101,7 @@ public class TimerView extends View {
     @Override
     public void onDraw(Canvas canvas) {
 
-        canvas.drawColor(Color.WHITE);
+        canvas.drawColor(Color.argb(245,132,72,0));
 
         // The center of the canvas.
         //float centerY = canvas.getHeight() / 2;
@@ -112,6 +112,8 @@ public class TimerView extends View {
 
         // Display this if the animation is not running.
         if (stop) {
+            timeString = "0:00";
+            remainingTimeString = "0:00";
             progress = 0;
             textPaint.setTextSize(75);
             line1 = "Touch the '?' for help or to learn";
@@ -120,6 +122,7 @@ public class TimerView extends View {
 
         }
 
+        // Makes sure that everything has been set up already.
         if (initHasBeenCalled) {
 
             // Draw the instructions.
@@ -180,24 +183,24 @@ public class TimerView extends View {
         fillPaint = new Paint();
         fillPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         fillPaint.setAntiAlias(true);
-        fillPaint.setColor(Color.BLUE);
+        fillPaint.setColor(Color.argb(255,63,81,181));
 
         strokePaint = new Paint();
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setAntiAlias(true);
-        strokePaint.setColor(Color.BLUE);
-        strokePaint.setStrokeWidth(5);
+        strokePaint.setColor(Color.BLACK);
+        strokePaint.setStrokeWidth(15);
 
         textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
         textPaint.setAntiAlias(true);
-        textPaint.setColor(Color.RED);
-        textPaint.setTextSize(65);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(60);
 
         timerPaint = new Paint();
         timerPaint.setStyle(Paint.Style.STROKE);
         timerPaint.setAntiAlias(true);
-        timerPaint.setColor(Color.BLUE);
+        timerPaint.setColor(Color.WHITE);
         timerPaint.setTextSize(100);
 
         // Create the strings.
@@ -256,8 +259,6 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":0" + remainingSeconds;
                 else
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
-
-                // TODO when animation has ended, it ends a second over what it should be
 
                 // ---------------------------------------------------------------------------------
 

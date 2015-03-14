@@ -14,7 +14,7 @@
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="PrimaryBrown">#795548</color>
+    <color name="PrimaryBrown">#844800</color>
     <color name="PrimaryDarkBlue">#303f9f</color>
     <color name="PrimaryLightBlue">#3F51B5</color>
     <!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
