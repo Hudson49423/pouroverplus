@@ -87,11 +87,13 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         setRatios();
-
-        if (v == cupsUp) {
+        // This sets the max number of cups to five.
+        if (v == cupsUp && numCups < 5) {
             numCups += 0.5;
             update();
-        } else if (v == cupsDown && numCups > 0) {
+        }
+        // Use .5 here as that is the smallest amount of cups possible
+        else if (v == cupsDown && numCups > .5) {
             numCups -= 0.5;
             update();
         }
