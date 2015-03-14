@@ -236,6 +236,7 @@ public class TimerView extends View {
         calculateTimesAndAmounts(cups, grams);
         drain = false;
         progress = 0;
+        mHandler.removeCallbacksAndMessages(null);
         startTime = System.currentTimeMillis();
         runnable = new Runnable() {
             @Override
@@ -276,7 +277,7 @@ public class TimerView extends View {
                     }
                 }
                 // From the end of the bloom time to the start of the second pour.
-                else if (currentTime < (secondPour + bloomTime)) {
+                else if (currentTime < (endTime - secondPour)) {
                     line1 = "Pour half of the water (" + secondPour + "mL) slowly";
                     line2 = firstPourInstruction2;
                     line3 = firstPourInstruction3;
@@ -298,7 +299,7 @@ public class TimerView extends View {
                 }
 
                 // From the end of the first pour to the end time.
-                else if (currentTime > (secondPour + bloomTime)) {
+                else if (currentTime < endTime) {
                     line1 = secondPourInstruction1;
                     line2 = secondPourInstruction2;
                     line3 = "";

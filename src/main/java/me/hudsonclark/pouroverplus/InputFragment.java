@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import me.hudsonclark.pouroverplus.view.TimerView;
+
 public class InputFragment extends Fragment implements View.OnClickListener {
 
     private double numCups;
@@ -132,6 +134,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
 
     // Called when "let's go" button is clicked.
     private void start() {
+        // Stop the animation before starting a new one.
+        TimerView.stop = true;
         TimerFragment tf = (TimerFragment) getFragmentManager().findFragmentById(R.id.timer_frag);
         tf.startTimer(numCups, coffeeGrams);
     }
