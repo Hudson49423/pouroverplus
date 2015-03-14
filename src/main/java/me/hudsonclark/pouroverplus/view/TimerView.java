@@ -258,7 +258,7 @@ public class TimerView extends View {
                     remainingTimeString = "" + remainingMinutes + ":" + remainingSeconds;
 
                 // TODO when animation has ended, it ends a second over what it should be
-                
+
                 // ---------------------------------------------------------------------------------
 
                 // From 0 to the bloom time.
