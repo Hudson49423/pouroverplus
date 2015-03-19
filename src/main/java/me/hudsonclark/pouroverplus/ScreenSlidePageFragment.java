@@ -2,12 +2,13 @@ package me.hudsonclark.pouroverplus;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class ScreenSlidePageFragment extends Fragment {
+
+    private int position;
 
     public static ScreenSlidePageFragment newInstance(int position) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
@@ -20,9 +21,8 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Here we decide which layout to inflate.
-        int position = this.getArguments().getInt("position", 0);
+        this.position = this.getArguments().getInt("position", 0);
 
         if (position == 1) {
             // Inflate layout one.
@@ -35,6 +35,5 @@ public class ScreenSlidePageFragment extends Fragment {
             return rootView;
         }
     }
-
 }
 

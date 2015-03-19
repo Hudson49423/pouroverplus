@@ -30,7 +30,6 @@ public class HelpActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +52,17 @@ public class HelpActivity extends FragmentActivity {
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
+    }
+
+    public void next(int position) {
+        if (position < NUM_PAGES)
+            mPager.setCurrentItem(position + 1);
+    }
+    public void back(View v) {
+        onBackPressed();
+    }
+    public void next(View v) {
+        next(mPager.getCurrentItem());
     }
 
     /**

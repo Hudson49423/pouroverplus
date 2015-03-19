@@ -26,14 +26,16 @@
             android:layout_height="match_parent"
             android:layout_weight=".5"
             android:text="@string/back_button"
-            android:background="@color/PrimaryDarkBlue" />
+            android:background="@color/PrimaryDarkBlue"
+            android:onClick="back"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".5"
             android:text="@string/next_button"
-            android:background="@color/PrimaryDarkBlue" />
+            android:background="@color/PrimaryDarkBlue"
+            android:onClick="next"/>
     </LinearLayout>
 
 

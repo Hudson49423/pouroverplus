@@ -13,9 +13,7 @@
         android:minHeight="@dimen/abc_action_bar_default_height_material"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:background="?attr/colorPrimary"
-        app:title="@string/action_help"
-        app:navigationContentDescription="@string/abc_action_bar_up_description"
-        app:navigationIcon="?attr/homeAsUpIndicator"/>
+        app:title="@string/action_help" />
 
     <LinearLayout
         android:id="@+id/buttons"
@@ -28,26 +26,29 @@
             android:layout_height="match_parent"
             android:layout_weight=".5"
             android:text="@string/back_button"
-            android:background="@color/PrimaryDarkBlue" />
+            android:background="@color/PrimaryDarkBlue"
+            android:onClick="back"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".5"
             android:text="@string/next_button"
-            android:background="@color/PrimaryDarkBlue" />
+            android:background="@color/PrimaryDarkBlue"
+            android:onClick="next"/>
     </LinearLayout>
 
 
-    <TextView android:id="@+id/pourover_title"
+    <TextView
+        android:id="@+id/pourover_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:text="@string/pourover_title"
         android:layout_centerHorizontal="true"
         android:textColor="@color/PrimaryLightBlue"
-        android:textSize="18sp"
-        android:padding="8dp"/>
+        android:textSize="22sp"
+        android:padding="8dp" />
 
     <View
         android:id="@+id/view1"
@@ -55,7 +56,7 @@
         android:layout_height="2dp"
         android:layout_below="@id/pourover_title"
         android:background="@color/PrimaryDarkBlue"
-        android:padding="3dp"/>
+        android:padding="3dp" />
 
     <TextView
         android:id="@+id/pourover_def"
@@ -67,7 +68,8 @@
         android:textSize="18sp"
         android:padding="8dp" />
 
-    <TextView android:id="@+id/bloom_title"
+    <TextView
+        android:id="@+id/bloom_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/pourover_def"
@@ -75,7 +77,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/PrimaryLightBlue"
         android:textSize="22sp"
-        android:padding="8dp"/>
+        android:padding="8dp" />
 
 
     <View
@@ -83,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="2dp"
         android:layout_below="@id/bloom_title"
-        android:background="@color/PrimaryDarkBlue"/>
+        android:background="@color/PrimaryDarkBlue" />
 
     <TextView
         android:id="@+id/bloom_def"
@@ -95,7 +97,8 @@
         android:textSize="18sp"
         android:padding="8dp" />
 
-    <TextView android:id="@+id/amount_title"
+    <TextView
+        android:id="@+id/amount_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bloom_def"
@@ -103,14 +106,14 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/PrimaryLightBlue"
         android:textSize="22sp"
-        android:padding="8dp"/>
+        android:padding="8dp" />
 
     <View
         android:id="@+id/view3"
         android:layout_width="wrap_content"
         android:layout_height="2dp"
         android:layout_below="@id/amount_title"
-        android:background="@color/PrimaryDarkBlue"/>
+        android:background="@color/PrimaryDarkBlue" />
 
     <TextView
         android:id="@+id/amount_def"
