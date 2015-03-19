@@ -1,5 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</LinearLayout><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/help_screen_two.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="?attr/colorPrimary"
+        app:title="@string/action_help" />
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/back_button"
+            android:textColor="#ffffff"
+            android:background="@color/PrimaryDarkBlue"
+            android:onClick="back" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:text="@string/time_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/PrimaryLightBlue"
+        android:textSize="22sp"
+        android:padding="8dp" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@id/time_title"
+        android:background="@color/PrimaryDarkBlue"
+        android:padding="3dp" />
+
+    <TextView
+        android:id="@+id/pourover_def"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view1"
+        android:text="@string/time_def"
+        android:textColor="@color/PrimaryBrown"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/grind_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pourover_def"
+        android:text="@string/grind_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/PrimaryLightBlue"
+        android:textSize="22sp"
+        android:padding="8dp" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@id/grind_title"
+        android:background="@color/PrimaryDarkBlue" />
+
+    <TextView
+        android:id="@+id/grind_def"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
+        android:text="@string/grind_def"
+        android:textColor="@color/PrimaryBrown"
+        android:textSize="18sp"
+        android:padding="8dp" />
+</RelativeLayout><!-- From: file:/home/hudson49423/AndroidStudioProjects/PourOverPlus/app/src/main/res/layout/help_screen_two.xml -->
