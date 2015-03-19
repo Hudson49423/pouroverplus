@@ -101,7 +101,8 @@ public class TimerView extends View {
     @Override
     public void onDraw(Canvas canvas) {
 
-        canvas.drawColor(Color.argb(245,132,72,0));
+        // Background color of the animation.
+        canvas.drawColor(Color.argb(180,132,72,0));
 
         // The center of the canvas.
         //float centerY = canvas.getHeight() / 2;
