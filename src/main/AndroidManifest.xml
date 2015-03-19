@@ -25,6 +25,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.hudsonclark.pouroverplus.Home" />
         </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName=".Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.hudsonclark.pouroverplus.Home" />
+        </activity>
     </application>
 
 </manifest>

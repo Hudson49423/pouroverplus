@@ -30,5 +30,6 @@
     <integer name="thirty">30</integer>
 
     <string name="title_activity_test">test</string>
+    <string name="title_activity_help">HelpActivity</string>
 
 </resources>

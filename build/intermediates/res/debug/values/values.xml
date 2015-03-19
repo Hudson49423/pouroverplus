@@ -194,6 +194,7 @@
     <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="pref_water_key">water</string>
     <string name="pref_water_title">Milliliters of water per cup</string>
+    <string name="title_activity_help">HelpActivity</string>
     <string name="title_activity_home">home</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_test">test</string>

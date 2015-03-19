@@ -25,7 +25,6 @@ public class Home extends ActionBarActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -42,22 +41,25 @@ public class Home extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            // Make sure the animation is stopped.
+            TimerView.stop = true;
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
         if (id == R.id.action_help) {
-            // TODO create help activity.
+            // Make sure the animation is stopped.
+            TimerView.stop = true;
+            Intent intent = new Intent(this, HelpActivity.class);
+            startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
         // Stop the animation.
         TimerView.stop = true;
     }
