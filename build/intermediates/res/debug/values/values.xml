@@ -178,14 +178,35 @@
     <eat-comment/>
     <string name="action_help">Help</string>
     <string name="action_settings">Settings</string>
+    <string name="amount_title">How much coffee to use?</string>
     <string name="app_name">Pour Over Plus</string>
+    <string name="back_button">Back</string>
+    <string name="bloom_def">Coffee, after it is roasted, contains carbon dioxide. By wetting the
+                             ground coffee before flooding it to brew, this gas is released. Fresh coffee
+                             is characterized by bubbling profusely when wet to bloom.</string>
+    <string name="bloom_title">Bloom</string>
     <string name="coffee_title">Coffee</string>
+    <string name="controls_def">Touch the gear symbol in the top left hand
+                                corner while at the home screen. Various settings are available.</string>
+    <string name="controls_title">How can I change settings?</string>
     <string name="cups_title">Cups</string>
+    <string name="grind_def">Coffee Grind: The grind of the coffee is very important. Too fine and
+                            coffee may taste bitter, while grind too coarse and it may taste sour and weak.
+                            Try to have a grind that brews a single cup in three minutes, including
+                            the bloom time.</string>
+    <string name="grind_title">Grind</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
+    <string name="how_much_coffee_def">Coffee is best measured in grams.
+                                        The recommended ratio to coffee to water is 19 grams to one cup.</string>
     <string name="lets_go_button">Let\'s Go!</string>
+    <string name="next_button">Next</string>
     <string name="num_coffee">19</string>
     <string name="num_cups">1</string>
+    <string name="pourover_def">A brew process emphasizing care, precision, and patience.
+                                Flavors brought out by this technique are distinctive - Usually described
+                                as fruity, bright, and clean.</string>
+    <string name="pourover_title">Pour Over</string>
     <string name="pref_bloom_time_key">bloom</string>
     <string name="pref_bloom_time_title">Bloom time</string>
     <string name="pref_grams_key">grams</string>
@@ -194,7 +215,13 @@
     <string name="pref_tablespoons_title">Tablespoons of coffee per cup</string>
     <string name="pref_water_key">water</string>
     <string name="pref_water_title">Milliliters of water per cup</string>
-    <string name="title_activity_help">HelpActivity</string>
+    <string name="time_def">Why does the time matter?: By maintaining a consistent and standard time, coffee
+                            brewed in a pour over is more likely to be balanced. It is recommended that a single
+                            cup takes three minutes, including the bloom time. If the brew process takes longer than it
+                            should, grind the coffee finer, and pour slower. If the brew process takes too
+                            long, grind coarser.</string>
+    <string name="time_title">Why does time matter?</string>
+    <string name="title_activity_help">Help Activity</string>
     <string name="title_activity_home">home</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_test">test</string>

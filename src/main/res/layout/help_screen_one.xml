@@ -1,11 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="?attr/colorPrimary"
+        app:title="@string/action_help" />
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:text="@string/back_button"
+            android:background="@color/PrimaryDarkBlue" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:text="@string/next_button"
+            android:background="@color/PrimaryDarkBlue" />
+    </LinearLayout>
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="One"/>
+        android:id="@+id/pourover_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:text="@string/pourover_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/PrimaryLightBlue"
+        android:textSize="22sp"
+        android:padding="8dp" />
 
-</LinearLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@id/pourover_title"
+        android:background="@color/PrimaryDarkBlue"
+        android:padding="3dp" />
+
+    <TextView
+        android:id="@+id/pourover_def"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view1"
+        android:text="@string/pourover_def"
+        android:textColor="@color/PrimaryBrown"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/bloom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pourover_def"
+        android:text="@string/bloom_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/PrimaryLightBlue"
+        android:textSize="22sp"
+        android:padding="8dp" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@id/bloom_title"
+        android:background="@color/PrimaryDarkBlue" />
+
+    <TextView
+        android:id="@+id/bloom_def"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
+        android:text="@string/bloom_def"
+        android:textColor="@color/PrimaryBrown"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/amount_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bloom_def"
+        android:text="@string/amount_title"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/PrimaryLightBlue"
+        android:textSize="22sp"
+        android:padding="8dp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_below="@id/amount_title"
+        android:background="@color/PrimaryDarkBlue" />
+
+    <TextView
+        android:id="@+id/amount_def"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount_title"
+        android:text="@string/how_much_coffee_def"
+        android:textColor="@color/PrimaryBrown"
+        android:textSize="18sp"
+        android:padding="8dp" />
+
+
+</RelativeLayout>
